@@ -1,0 +1,38 @@
+;; Music vars
+(defpoll SONG :interval "1s" "scripts/music_info --song")
+(defpoll ARTIST :interval "1s" `scripts/music_info --artist`)
+(defpoll COVER :interval "1s" `scripts/music_info --cover`)
+(defpoll STATUS :interval "1s" `scripts/music_info --status`)
+
+
+
+;; music
+(defwidget music [] 
+		(box :class "dockbox"
+			(box :orientation "h" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
+				(box :class "musicbox" :orientation "h" :spacing 0 :valign "left" :halign "start" :space-evenly "true" :vexpand "false" :hexpand "false"
+					(label :class "song" :halign "start" :wrap "false" :limit-width 20 :text SONG)
+					(label :class "artist" :halign "start" :wrap "false" :limit-width 20 :text ARTIST)))
+			(box :class "musicbuttons" :orientation "h" :spacing 10 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(button :style "background-image: url('/home/brian/.config/eww/assets/previous-button.png');" :class "trackbutton" :onclick "scripts/music_info --prev")
+				(button :style "background-image: url('${STATUS}');" :class "playbutton" :onclick "scripts/music_info --toggle")
+				(button :style "background-image: url('/home/brian/.config/eww/assets/next-button.png');" :class "trackbutton" :onclick "scripts/music_info --next"))))
+
+
+
+;; music
+(defwindow music
+           :monitor 0
+           :geometry (geometry :x "50%"
+                               :y "-4%"
+                               :width "0px"
+                               :height "0px"
+                               :anchor "center top")
+	   :layer "overlay"
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "normal"
+           :wm-ignore false
+	   :namespace "eww"
+(music))

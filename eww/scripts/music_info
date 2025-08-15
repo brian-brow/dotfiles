@@ -1,0 +1,107 @@
+#!/bin/bash
+
+## Get data
+STATUS="$(playerctl status)"
+
+get_status() {
+	if [[ $STATUS == "Playing" ]]; then
+		echo "/home/brian/.config/eww/assets/pause-button.png"
+	else
+		echo "/home/brian/.config/eww/assets/play-button.png"
+	fi
+}
+
+get_song() {
+	song=`playerctl metadata xesam:title`
+	if [[ -z "$song" ]]; then
+		echo "Offline"
+	else
+		echo "$song"
+	fi
+}
+
+get_artist() {
+	artist=`playerctl metadata xesam:artist`
+	if [[ -z "$artist" ]]; then
+		echo "Offline"
+	else
+		echo "$artist"
+	fi
+}
+
+get_album() {
+	album=`playerctl metadata xesam:album`
+	if [[ -z "$album" ]]; then
+		echo "Offline"
+	else
+		echo "$album"
+	fi
+}
+
+get_ttime() {
+	ttime=`playerctl metadata mpris:length`
+	if [[ -z "$ttime" ]]; then
+		echo "0:00"
+	else
+		echo "$ttime"
+	fi
+}
+
+get_cover() {
+	prefix="file://"
+
+	old_track="$(playerctl metadata mpris:artUrl)"
+	
+	old_track_trimmed=${old_track#"$prefix"}
+
+	if [ "$old_track_trimmed" != "No players found" ]; then
+		echo "$old_track_trimmed"
+	else
+		echo "images/music.png"
+	fi
+}
+
+wait_for_track_change() {
+	prefix="file://"
+	old_track="$(playerctl metadata xesam:title)"
+	old_track_trimmed="${old_track#file://}"
+	timeout=50
+	waited=0
+
+	while [[ $waited -lt  $timeout ]]; do
+		sleep 0.2
+		new_track=$(playerctl metadata xesam:title)
+		echo $new_track
+		if [[ "$new_track" != "$old_track_trimmed" ]]; then
+			sleep 3
+			break
+		fi
+		waited=$((waited+1))
+	done
+}
+
+if [[ "$1" == "--song" ]]; then
+	get_song
+elif [[ "$1" == "--artist" ]]; then
+	get_artist
+elif [[ "$1" == "--status" ]]; then
+	get_status
+elif [[ "$1" == "--time" ]]; then
+	get_time
+elif [[ "$1" == "--ctime" ]]; then
+	get_ctime
+elif [[ "$1" == "--ttime" ]]; then
+	get_ttime
+elif [[ "$1" == "--cover" ]]; then
+	get_cover
+elif [[ "$1" == "--toggle" ]]; then
+	playerctl play-pause
+elif [[ "$1" == "--next" ]]; then
+	playerctl next
+	wait_for_track_change
+	get_cover
+elif [[ "$1" == "--prev" ]]; then
+	playerctl previous
+	wait_for_track_change
+	get_cover
+fi

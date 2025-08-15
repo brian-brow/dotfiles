@@ -1,0 +1,73 @@
+* {
+	font-family: Maple Mono;
+	background: transparent;
+	color: alpha(#D3F2EF, .9);
+}
+
+#window {
+	color: alpha(#231B30, .9);
+	border-color: alpha(#D3F2EF, .9);
+	border-style: solid;
+	border-width: 1px;
+	background-color: alpha(#231B30, .9);
+	border-radius: 10px;
+}
+
+#scroll {
+	border-top-style: solid;
+	border-width: 1px;
+	border-color: alpha(#D3F2EF, .9);
+}
+
+#inner-box {
+	padding-top: 12px;
+}
+
+#entry {
+	border-style: none;
+	border-color: alpha(#231B30, .9);
+	color: alpha(#231B30, .9);
+	padding: 6px;
+	margin-bottom: 8px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+entry:selected {
+	background: alpha(#D3F2EF, .9);
+	color: alpha(#231B30, .9);
+	font-weight: bold;
+	outline: none;
+}
+
+#input {
+	background-color: alpha(#231B30, .9);
+	color: alpha(#231B30, .9);
+	border-color: alpha(#D3F2EF, .9);
+
+	border-style: none;
+	border-bottom-style: solid;
+	border-width: 1px;
+
+	font-styles: normal;
+
+	border-radius: 8px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+
+	padding: 12px;
+	margin: 8px;
+}
+
+#input:focus {
+	background: alpha(#231B30, .9);
+	background-color: alpha(#231B30, .9);
+	border-color: alpha(#D3F2EF, .9);
+	color: alpha(#D3F2EF, .9);
+	font-style: bold;
+}
+
+#img {
+	padding: 4px;
+	margin-right: 6px;
+}
