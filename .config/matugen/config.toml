@@ -1,0 +1,66 @@
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "any", "--transition-fps", "60"]
+set = false
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.wlogout]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/wlogout/colors.css'
+
+[templates.wofi]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/wofi/colors.css'
+
+[templates.YouTubeMusic]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/YouTube Music/colors.css'
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = "kill -SIGUSR1 $(pidof kitty)"
+
+[templates.hyprland]
+input_path = '~/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+#[templates.gtk3]
+#input_path = '~/.config/matugen/templates/gtk-colors.css'
+#output_path = '~/.config/gtk-3.0/colors.css'
+
+#[templates.gtk4]
+#input_path = '~/.config/matugen/templates/gtk-colors.css'
+#output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'
+
+#[templates.cava]
+#input_path = '~/.config/matugen/templates/matugen-cava'
+#output_path = '~/.config/cava/config'
+#post_hook = "pkill -USR1 cava"
+
+#[templates.spicetify]
+#input_path = '~/.config/matugen/templates/spotify-colors.ini'
+#output_path = '~/.config/spicetify/Themes/text/color.ini'
+
+[templates.vesktop]
+input_path = '~/.config/matugen/templates/midnight-discord.css'
+output_path = '~/.config/vesktop/themes/matugen.css'
+
+[templates.ohmyposh]
+input_path  = '~/.config/matugen/templates/ohmyposh-safe.json'
+output_path = '~/.config/ohmyposh/colors.json'
+post_hook = '~/.config/hypr/scripts/ohmyposh.sh'
+
+[templates.todo]
+input_path = '~/.config/matugen/templates/todo.css'
+output_path = '~/.config/ToDo/style.qss'
+post_hook = 'pkill todo-app'

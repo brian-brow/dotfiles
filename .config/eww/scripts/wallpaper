@@ -1,0 +1,2 @@
+#!/bin/bash
+hyprctl hyprpaper wallpaper "eDP-1,/home/brian/Wallpapers/$1"

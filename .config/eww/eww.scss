@@ -1,0 +1,117 @@
+*{
+	all: unset;
+	font-family: "JetBrains Mono";
+	color: #D3F2EF;
+}
+
+
+$foreground: #D3f2Ef;
+$background: #231B30;
+
+.dockbox {
+        background: transparent;
+	border-radius: 12px;
+}
+
+.album_art {
+    background-repeat: no-repeat;
+	background-size: 22px;
+	min-height: 22px;
+	min-width: 22px;
+	margin: 8px;
+        border-radius: 10%;
+}
+
+
+.album_art:hover {
+    background-repeat: no-repeat;
+	background-size: 14px;
+	min-height: 23px;
+	min-width: 23px;
+	margin: 8px;
+}
+
+
+.musicbox {
+	margin : 0px 0px 0px 3px;
+}
+
+.song {
+	font-size : 12px;
+	font-weight : bold;
+        min-width: 150px;
+}
+
+.artist {
+	font-size : 10px;
+	font-weight : bold;
+        min-width: 150px;
+}
+
+.musicbuttons {
+	margin : 0px 0px 0px -90px;
+}
+
+.playbutton {
+    background-repeat: no-repeat;
+	background-size: 14px;
+	min-height: 14px;
+	min-width: 14px;
+	margin: 12px;
+}
+
+.playbutton:hover {
+    min-height: 10px;
+    min-width: 10px;
+}
+
+.trackbutton {
+    background-repeat: no-repeat;
+	background-size: 14px;
+	min-height: 14px;
+	min-width: 14px;
+	margin: 12px 
+}
+
+.wallpaperbox {
+  background: $background;
+  border-radius: 12px;
+  margin: 5px 5px 5px 5px;
+}
+
+.wallpaper {
+  margin: 5px 5px 5px 5px;
+}
+
+.volbar trough {
+  all: unset;
+  background-color: mix($background, $foreground, 80%);
+  border-radius: 5px;
+  min-height: 4px;
+  min-width: 50px;
+  margin: 0 .5rem 0 .1rem ;
+}
+
+.volbar trough highlight {
+  min-height: 8px;
+  background-color: mix($background, $foreground, 90%);
+  border-radius: 5px;
+}
+
+.volume-icon{
+  color: mix($background, $foreground, 90%);
+  padding: 0 10px 0 0;
+  font-size: 1rem;
+}
+
+.volume{
+  margin: 0 4px;
+}
+
+.my-btn {
+  background-color: #00ff00;
+}
+
+.my-btn:hover {
+  background-color: #00aa00;
+}

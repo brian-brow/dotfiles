@@ -1,0 +1,12 @@
+
+[Default Applications]
+x-scheme-handler/discord=vesktop.desktop
+text/x-processing=processing-pde.desktop
+x-scheme-handler/pde=processing-pde.desktop
+x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
+image/png=imv.desktop
+image/jpeg=imv.desktop
+image/jpg=imv.desktop
+image/gif=imv.desktop
+image/webp=imv.desktop
+application/pdf=org.pwmt.zathura.desktop

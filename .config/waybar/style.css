@@ -1,0 +1,288 @@
+@import "colors.css";
+
+* {
+		font-family: "Mononoki Nerd Font";
+    font-size: 16px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background-color: transparent;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-radius: 100px;
+    margin-top: 300px;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+
+button {
+    box-shadow: inset 0 -3px transparent;
+    border: none;
+    border-radius: 100%;
+}
+
+button:hover {
+    background: inherit;
+}
+
+#pulseaudio:hover {
+}
+
+#window{
+  font-size: 9px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 0px 2px;
+  border-radius: 400px;
+  background-color: alpha(@on_primary_fixed, 0.85);
+  color: @primary;
+}
+
+#workspaces button {
+    all: unset;
+    border-radius: 100%;
+    padding: 0px 10px;
+    color: alpha(@on_surface, .4);
+    animation: gradient_f 20s ease-in infinite;
+    transition: all .5s ease;
+}
+
+
+#workspaces button.empty {
+	color: @surface_container;
+	border: none;
+	text-shadow: 0px 0px 2px rgba(0, 0, 0, .2);
+}
+
+#workspaces button.active {
+  color: @tertiary;
+  border: none;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, .5)
+}
+
+#workspaces button.focused {
+	color: @tertiary;
+	border: none;
+	text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+}
+
+#workspaces button.urgent {
+    color: @error;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#custom-mem,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    color: @secondary;
+}
+
+#window,
+#workspaces {
+    margin: 0 5px 0 5px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#custom-os_button {
+    color: @surface;
+    font-size: 1.2rem;
+    padding: 0 12px 0 8px;
+    margin-left: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-radius: 100px;
+    background-color: @primary;
+}
+
+#custom-os_button:hover{
+  transition: ease 0.2s all;
+  color: @primary;
+  background-color: @surface_container;
+}
+
+#custom-notification {
+  color: @tertiary;
+  padding: 0 8px 0 0px;
+}
+
+#custom-power {
+  color: @surface;
+  font-size: 1.2rem;
+  padding: 0 14px 0 8px;
+  margin-left: 4px;
+  margin-right: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 100px;
+  background-color: @primary;
+}
+
+#custom-power:hover{
+  transition: ease 0.2s all;
+  color: @primary;
+  background-color: @surface_container;
+}
+
+#clock {
+    color: @tertiary;
+    margin-right: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 0 100px 100px 0;
+}
+
+#battery {
+    color: @tertiary;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+#battery.charging, #battery.plugged {
+    color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        color: @on_surface;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    color: @error;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: @surface_dim;
+}
+
+
+#custom-mem {
+    background-color: transparent;
+    margin-right:6px;
+    margin-left:6px;
+}
+
+#disk {
+    background-color: transparent;
+}
+
+#backlight {
+    background-color: transparent;
+}
+
+#network {
+    color: @tertiary;
+    background-color: transparent;
+}
+
+#network.disconnected {
+    color: @error;
+}
+
+#pulseaudio {
+    color: @tertiary;
+    margin-left: 4px;
+    background-color: transparent;
+}
+
+#pulseaudio.muted {
+    background-color: transparent;
+}
+
+#temperature {
+    color: @tertiary;
+    background-color: transparent;
+}
+
+#temperature.critical {
+    color: @error;
+}
+
+#idle_inhibitor {
+    background-color: @surface_container;
+}
+
+#idle_inhibitor.activated {
+    background-color: @primary;
+    color: @on_primary;
+}
+
+
+#scratchpad {
+    background: alpha(@surface_container, 0.5);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: @on_surface;
+}
+
+#privacy-item.screenshare {
+    background-color: @error;
+}
+
+#privacy-item.audio-in {
+    background-color: @tertiary;
+}
+
+#privacy-item.audio-out {
+    background-color: @secondary;
+}
+
+.modules-left {
+  margin: 3px 0 0 3px;
+  background-color: alpha(@on_primary_fixed, 0.85);
+  border-radius: 40px;
+}
+
+.modules-center {
+  margin: 3px 0 0 0;
+}
+
+.modules-right {
+  margin: 3px 3px 0 0;
+  background-color: alpha(@on_primary_fixed, 0.85);
+  border-radius: 40px; 
+}
