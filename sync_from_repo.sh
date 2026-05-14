@@ -3,11 +3,97 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# ── Branch config ─────────────────────────────────────────────────────────────
+# ── New system bootstrap ───────────────────────────────────────────────────────
 CONFIG="$HOME/.dotfiles-config"
 
 if [ ! -f "$CONFIG" ]; then
-  echo "No dotfiles config found. Which setup is this machine?"
+  read -rp "New system? Run package install first? [y/N] " new_system
+  if [[ "$new_system" =~ ^[Yy]$ ]]; then
+
+    PACKAGES=(
+      # System foundation
+      base base-devel linux linux-headers linux-firmware amd-ucode
+      grub os-prober efibootmgr dosfstools mtools
+      sudo nano man-db git wget curl unzip zip
+      networkmanager iwd wpa_supplicant wireless_tools
+      pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber
+      gst-plugin-pipewire libpulse
+      nvidia-open lib32-opencl-nvidia libva-nvidia-driver
+      zram-generator
+
+      # Desktop environment
+      hyprland hyprlock hyprpicker hyprpolkitagent uwsm
+      sddm xdg-desktop-portal-hyprland xdg-utils
+      qt5-wayland qt6-wayland qt6ct
+      wlogout swaync dunst libnotify
+      quickshell-git rofi wofi
+      polkit-kde-agent
+
+      # Daily driver apps
+      kitty neovim tmux lazygit
+      fastfetch htop fzf bat tree jq yazi
+      oh-my-posh
+      zen-browser-bin
+      vesktop
+      obsidian
+      thunderbird
+      mpv gimp
+
+      # Theming
+      kvantum nwg-look matugen papirus-icon-theme
+      ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-mononoki-nerd
+      noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+      woff2-font-awesome gnome-themes-extra
+
+      # Tools
+      grim slurp wl-clipboard wf-recorder
+      playerctl pavucontrol easyeffects cava
+      bluetui bluez bluez-utils
+      ddcutil piper
+      docker docker-compose
+      wireguard-tools openvpn networkmanager-openvpn
+      smartmontools evtest
+      7zip
+
+      # Extra
+      virtualbox virtualbox-host-modules-arch
+      obs-studio
+    )
+
+    AUR_PACKAGES=(
+      quickshell-git
+      zen-browser-bin
+      vesktop
+      matugen
+      oh-my-posh
+      bluetui
+      claude-code
+      yay
+    )
+
+    echo "Installing official packages..."
+    sudo pacman -Syu --needed "${PACKAGES[@]}"
+
+    echo
+    echo "Installing AUR packages..."
+    if ! command -v yay &>/dev/null; then
+      echo "yay not found, installing..."
+      git clone https://aur.archlinux.org/yay.git /tmp/yay
+      cd /tmp/yay
+      makepkg -si --noconfirm
+      cd "$REPO_DIR"
+    fi
+    yay -S --needed "${AUR_PACKAGES[@]}"
+
+    echo
+    echo "Packages installed."
+    echo
+  fi
+fi
+
+# ── Branch config ─────────────────────────────────────────────────────────────
+if [ ! -f "$CONFIG" ]; then
+  echo "Which setup is this machine?"
   echo "  1) desktop"
   echo "  2) laptop"
   read -rp "Choice [1/2]: " choice
