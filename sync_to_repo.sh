@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT="$(readlink -f "${BASH_SOURCE[0]}")"
+REPO_DIR="$(dirname "$SCRIPT")"
 
 # ── Branch config ─────────────────────────────────────────────────────────────
 CONFIG="$HOME/.dotfiles-config"

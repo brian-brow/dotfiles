@@ -15,3 +15,4 @@ export PATH="$HOME/scripts:$PATH"
 export QT_STYLE_OVERRIDE=kvantum
 
 fastfetch
+export PATH="$HOME/.local/bin:$PATH"
