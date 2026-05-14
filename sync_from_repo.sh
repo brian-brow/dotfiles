@@ -156,7 +156,6 @@ FILES=(
   .config/ohmyposh
   .config/tmux
   .config/yay
-  .config/vesktop
   # Single files
   .bashrc
   .zshrc
