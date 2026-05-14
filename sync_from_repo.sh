@@ -57,6 +57,9 @@ if [ ! -f "$CONFIG" ]; then
       # Extra
       virt-manager libvirt dnsmasq qemu-desktop
       obs-studio
+
+      # Wallpapers
+      Wallpapers
     )
 
     AUR_PACKAGES=(
