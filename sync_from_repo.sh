@@ -55,7 +55,7 @@ if [ ! -f "$CONFIG" ]; then
       7zip
 
       # Extra
-      virtualbox virtualbox-host-modules-arch
+      virt-manager libvirt dnsmasq qemu-desktop
       obs-studio
     )
 
