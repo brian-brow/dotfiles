@@ -1,0 +1,16 @@
+{
+    "Created": "Phunt_Vieg_",
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+		"palette": {
+    	"white":    "{{ colors.on_surface.default.hex }}",
+    	"black":    "{{ colors.surface.default.hex }}",
+    	"blue":     "{{ colors.primary.default.hex }}",
+    	"lavender": "{{ colors.secondary.default.hex }}",
+    	"cyan":     "{{ colors.primary.default.hex }}",
+    	"green":    "{{ colors.secondary_container.default.hex }}",
+    	"purple":   "{{ colors.surface_variant.default.hex }}",
+   		"red":      "{{ colors.error.default.hex }}",
+    	"pink":     "{{ colors.secondary_container.default.hex }}",
+    	"yellow":   "{{ colors.inverse_primary.default.hex }}",
+    	"orange":   "{{ colors.error_container.default.hex }}"
+    },

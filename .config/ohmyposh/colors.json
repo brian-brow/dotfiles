@@ -1,0 +1,16 @@
+{
+    "Created": "Phunt_Vieg_",
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+		"palette": {
+    	"white":    "#f0dfd8",
+    	"black":    "#1a120e",
+    	"blue":     "#ffb691",
+    	"lavender": "#e6beac",
+    	"cyan":     "#ffb691",
+    	"green":    "#5c4033",
+    	"purple":   "#52443d",
+   		"red":      "#ffb4ab",
+    	"pink":     "#5c4033",
+    	"yellow":   "#8d4e2b",
+    	"orange":   "#93000a"
+    },

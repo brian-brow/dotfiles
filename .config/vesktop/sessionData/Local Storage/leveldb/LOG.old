@@ -1,0 +1,14 @@
+2026/05/14-00:14:44.601 1326fa Reusing MANIFEST /home/brian/.config/vesktop/sessionData/Local Storage/leveldb/MANIFEST-000001
+2026/05/14-00:14:44.605 1326fa Recovering log #4605
+2026/05/14-00:14:44.605 1326fa Level-0 table #4608: started
+2026/05/14-00:14:44.609 1326fa Level-0 table #4608: 37028 bytes OK
+2026/05/14-00:14:44.614 1326fa Delete type=0 #4605
+2026/05/14-00:14:44.614 13272e Compacting 4@0 + 1@1 files
+2026/05/14-00:14:44.631 13272e Generated table #4610@0: 134 keys, 1865130 bytes
+2026/05/14-00:14:44.631 13272e Compacted 4@0 + 1@1 files => 1865130 bytes
+2026/05/14-00:14:44.636 13272e compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/05/14-00:14:44.636 13272e Delete type=2 #4604
+2026/05/14-00:14:44.636 13272e Delete type=2 #4602
+2026/05/14-00:14:44.636 13272e Delete type=2 #4608
+2026/05/14-00:14:44.636 13272e Delete type=2 #4600
+2026/05/14-00:14:44.636 13272e Delete type=2 #4606

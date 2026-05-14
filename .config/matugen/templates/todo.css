@@ -1,0 +1,241 @@
+/* set default font */
+* {
+  font-family: "JetBrains Mono";
+}
+
+/* Main window styling */
+QMainWindow {
+  background-color: {{colors.on_primary.default.hex}}; /* matches rofi window background */
+  border-radius: 20px;
+}
+
+/* todo list entry styling */
+QWidget#todoEntry {
+  background-color: {{colors.on_primary_fixed.default.hex}}; /* matches rofi inputbar/button background */
+  border-radius: 12px;
+}
+
+QWidget#todoEntry:hover {
+  background-color: {{colors.primary.default.hex}};
+}
+
+/* todo list entry styling */
+QWidget#todoEntryDaily {
+  background-color: {{colors.on_primary_fixed.default.hex}};
+  border-left: 3px solid {{colors.primary_fixed.default.hex}}; 
+  border-radius: 12px;
+}
+
+QWidget#todoEntryDaily:hover {
+  background-color: {{colors.secondary.default.hex}};
+  border-left: 0px;
+}
+
+/* input container */
+QWidget#inputContainer {
+  background-color: {{colors.on_primary_fixed.default.hex}}; /* matches rofi inputbar */
+  border-radius: 12px;
+  margin: 0px;
+}
+
+/* input button container */
+QWidget#inputButtonContainer {
+  background-color: {{colors.on_primary_fixed.default.hex}};
+  border-radius: 12px;
+  max-height: 30px;
+  margin: 0px;
+}
+
+/* input box */
+QLineEdit {
+  background-color: {{colors.on_primary_fixed.default.hex}}; /* matches rofi inputbar */
+  color: {{colors.on_surface.default.hex}}; /* matches rofi text-color */
+  border: 0px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+QLineEdit:focus {
+  background-color: {{colors.on_primary_fixed.default.hex}};
+}
+
+/* input placeholder text styling */
+QLineEdit::placeholder {
+  color: {{colors.on_surface.default.hex}};
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+/* todo list styling */
+QListWidget {
+  background-color: {{colors.on_primary_fixed.default.hex}}; /* matches rofi listview background */
+  border: 0px solid {{colors.outline_variant.default.hex}};
+  border-radius: 12px;
+  padding: 5px;
+  outline: none;
+}
+
+QListWidget::item {
+  background-color: transparent;
+  padding: 0px;
+  margin: 2px 6px 2px 2px;
+  color: {{colors.on_surface.default.hex}};
+}
+
+QListWidget::item:hover {
+  background-color: {{colors.primary.default.hex}}; /* matches rofi element selected */
+  color: {{colors.on_secondary.default.hex}};
+  border-radius: 10px;
+}
+
+/* timer button */
+QPushButton#recurrenceToggle {
+  background-color: {{colors.on_primary.default.hex}}; /* matches rofi button */
+  color: {{colors.primary_fixed.default.hex}}; /* matches rofi button text-color */
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: bold;
+  font-size: 26px;
+  max-width: 30px;
+  max-height: 30px;
+}
+
+QPushButton#recurrenceToggle:hover {
+  background-color: {{colors.primary.default.hex}}; /* matches rofi button selected */
+  color: {{colors.on_secondary.default.hex}};
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: bold;
+  font-size: 26px;
+  max-width: 10px;
+  max-height: 10px;
+}
+
+QPushButton#recurrenceToggle:checked {
+  background-color: {{colors.primary_container.default.hex}};
+  color: {{colors.primary.default.hex}};
+  border: 1px solid {{colors.primary.default.hex}};
+  font-size: 20px;
+}
+
+/* add button styling */
+QPushButton#addBtn {
+  background-color: {{colors.primary.default.hex}}; /* matches rofi selected elements */
+  color: {{colors.on_secondary.default.hex}}; /* matches rofi selected text */
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  max-width: 30px;
+  max-height: 30px;
+}
+
+QPushButton#addBtn:hover {
+  background-color: {{colors.inverse_primary.default.hex}};
+  color: {{colors.inverse_surface.default.hex}};
+}
+
+/* delete button styling */
+QPushButton#deleteBtn {
+  background-color: {{colors.on_primary.default.hex}};
+  color: {{colors.error.default.hex}}; /* matches rofi error color */
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 30px;
+  max-height: 30px;
+}
+
+QPushButton#deleteBtn:hover {
+  background-color: {{colors.error.default.hex}}; /* matches rofi urgent/error states */
+  color: {{colors.on_surface.default.hex}};
+}
+
+/* check box styling */
+QCheckBox#unchecked {
+  spacing: 8px;
+  color: {{colors.on_surface.default.hex}};
+  font-weight: bold;
+  font-size: 24px;
+}
+
+QCheckBox#unchecked:hover {
+  spacing: 8px;
+  color: {{colors.inverse_on_surface.default.hex}};
+  font-weight: bold;
+  font-size: 24px;
+}
+
+QCheckBox#checked {
+  text-decoration: line-through;
+  spacing: 8px;
+  color: {{colors.tertiary.default.hex}};
+  font-weight: bold;
+  font-size: 24px;
+}
+
+QCheckBox#checked:hover {
+  text-decoration: line-through;
+  spacing: 8px;
+  color: {{colors.on_tertiary.default.hex}};
+  font-weight: bold;
+  font-size: 24px;
+}
+
+
+QCheckBox::indicator {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  border: 2px solid {{colors.tertiary.default.hex}};
+  background-color: transparent;
+}
+
+QCheckBox::indicator:hover {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  border: 2px solid {{colors.on_tertiary.default.hex}};
+  background-color: transparent;
+}
+
+QCheckBox::indicator:checked {
+  background-color: {{colors.tertiary.default.hex}};
+  text-decoration: line-through;
+}
+
+QCheckBox::indicator:checked:hover {
+  background-color: {{colors.on_tertiary.default.hex}};
+  border: 2px solid {{colors.on_tertiary.default.hex}};
+  text-decoration: line-through;
+}
+
+/* Scrollbar - minimal design */
+QScrollBar:vertical {
+  background-color: transparent;
+  width: 8px;
+  margin: 0px;
+  padding: 0px 0px 5px 0px;
+}
+
+QScrollBar::handle:vertical {
+  background-color: {{colors.primary.default.hex}};
+  border-radius: 4px;
+  min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+  background-color: {{colors.primary_fixed.default.hex}};
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+  height: 0px;
+}

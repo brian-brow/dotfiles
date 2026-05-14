@@ -1,0 +1,459 @@
+@define-color background        #1a120e;
+@define-color surface           #1a120e;
+@define-color surface-bright    #423732;
+@define-color surface-dim       #1a120e;
+@define-color surface-container #271e19;
+@define-color surface-variant   #52443d;
+
+@define-color foreground        #f0dfd8;
+@define-color text              #f0dfd8;
+@define-color text-muted        #d7c2b9;
+
+@define-color primary           #ffb691;
+@define-color on-primary        #542103;
+@define-color secondary         #e6beac;
+@define-color on-secondary      #432b1e;
+@define-color tertiary          #cfc890;
+@define-color on-tertiary       #353107;
+
+@define-color accent            #ffb691;
+@define-color accent-hover      #e6beac;
+@define-color accent-soft       #703716;
+@define-color outline           #a08d85;
+@define-color outline-variant   #52443d;
+
+@define-color urgent            #ffb4ab;
+@define-color on-urgent         #690005;
+
+@define-color success           #cfc890;
+@define-color warning           #e6beac;
+
+@define-color card-bg           alpha(@surface-container, 0.78);
+@define-color card-bg-strong    alpha(@surface-container, 0.92);
+@define-color popup-bg          alpha(@background, 0.72);
+@define-color popup-bg-strong   alpha(@background, 0.88);
+@define-color hover-bg          alpha(@accent, 0.18);
+@define-color pressed-bg        alpha(@accent, 0.30);
+@define-color button-bg         alpha(@accent, 0.22);
+@define-color button-bg-hover   alpha(@accent, 0.34);
+@define-color button-bg-active  @accent;
+@define-color border-color      alpha(@outline, 0.55);
+@define-color subtle-border     alpha(@outline-variant, 0.40);
+@define-color progress-bg       alpha(@foreground, 0.10);
+
+* {
+  all: unset;
+  color: @text;
+  font-size: 14px;
+  font-family: "JetBrains Mono Nerd Font 10";
+  transition: 200ms;
+}
+
+/* Avoid annoying background */
+.blank-window {
+  background: transparent;
+}
+
+/* =========================
+   CONTROL CENTER
+   ========================= */
+
+.control-center {
+  background: @popup-bg;
+  border-radius: 24px;
+  border: 1px solid @border-color;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+  margin: 18px;
+  padding: 12px;
+}
+
+.control-center .notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.control-center .notification-row .notification-background,
+.control-center .notification-row .notification-background .notification.critical {
+  background-color: @card-bg;
+  border-radius: 16px;
+  margin: 4px 0;
+  padding: 4px;
+}
+
+.control-center .notification-row .notification-background .notification {
+  border-radius: 12px;
+}
+
+.control-center .notification-row .notification-background .notification.critical {
+  border: 1px solid alpha(@urgent, 0.65);
+  color: @urgent;
+}
+
+.control-center .notification-row .notification-background .notification .notification-content {
+  margin: 6px;
+  padding: 8px 6px 2px 2px;
+}
+
+.control-center .notification-row .notification-background .notification > *:last-child > * {
+  min-height: 3.4em;
+}
+
+.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action {
+  background: @button-bg;
+  color: @text;
+  border-radius: 12px;
+  margin: 6px;
+  border: 1px solid transparent;
+}
+
+.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
+  background: @button-bg-hover;
+  border: 1px solid alpha(@accent, 0.45);
+}
+
+.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
+  background-color: @button-bg-active;
+  color: @on-primary;
+}
+
+/* Close button */
+
+.control-center .notification-row .notification-background .close-button {
+  background: transparent;
+  border-radius: 6px;
+  color: @text;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid transparent;
+}
+
+.control-center .notification-row .notification-background .close-button:hover {
+  background-color: @hover-bg;
+  border: 1px solid alpha(@accent, 0.35);
+}
+
+.control-center .notification-row .notification-background .close-button:active {
+  background-color: @pressed-bg;
+}
+
+/* Progress */
+
+progressbar,
+progress,
+trough {
+  border-radius: 12px;
+}
+
+progressbar {
+  background-color: @progress-bg;
+}
+
+.notification.critical progress {
+  background-color: @urgent;
+}
+
+.notification.low progress,
+.notification.normal progress {
+  background-color: @accent;
+}
+
+/* =========================
+   GROUPS
+   ========================= */
+
+.notification-group {
+  margin: 2px 8px;
+}
+
+.notification-group-headers {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: @text;
+  letter-spacing: 2px;
+}
+
+.notification-group-icon {
+  color: @text;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+  background: transparent;
+  color: @text;
+  margin: 4px;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover {
+  background: @hover-bg;
+}
+
+/* =========================
+   WIDGETS
+   ========================= */
+
+.widget-title {
+  font-size: 1.2em;
+  margin: 6px;
+}
+
+.widget-title button {
+  background: @button-bg;
+  border-radius: 8px;
+  padding: 4px 16px;
+  border: 1px solid transparent;
+}
+
+.widget-title button:hover {
+  background-color: @button-bg-hover;
+  border: 1px solid alpha(@accent, 0.35);
+}
+
+.widget-title button:active {
+  background-color: @button-bg-active;
+  color: @on-primary;
+}
+
+/* DND */
+
+.widget-dnd {
+  margin: 6px;
+  font-size: 1.2rem;
+}
+
+.widget-dnd > switch {
+  background: alpha(@surface-variant, 0.65);
+  font-size: initial;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 2px;
+  border: 1px solid alpha(@outline, 0.35);
+}
+
+.widget-dnd > switch:hover {
+  background: alpha(@surface-variant, 0.90);
+}
+
+.widget-dnd > switch:checked {
+  background: @accent;
+}
+
+.widget-dnd > switch:checked:hover {
+  background: @accent-hover;
+}
+
+.widget-dnd > switch slider {
+  background: @on-primary;
+  border-radius: 6px;
+}
+
+/* Buttons grid */
+
+.widget-buttons-grid {
+  font-size: x-large;
+  padding: 4px 6px;
+  margin: 6px;
+  border-radius: 12px;
+  background: alpha(@surface-container, 0.85);
+  border: 1px solid @subtle-border;
+}
+
+.widget-buttons-grid > flowbox {
+  margin: 0;
+  padding: 0;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild {
+  margin: 0;
+  padding: 0;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  min-width: 40px;
+  min-height: 40px;
+  margin: 4px;
+  padding: 2px;
+
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @hover-bg;
+  border: 1px solid alpha(@accent, 0.35);
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:active {
+  background: @pressed-bg;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked,
+.widget-buttons-grid > flowbox > flowboxchild > button.active {
+  background: @button-bg-active;
+  color: @on-primary;
+  border: 1px solid alpha(@accent, 0.60);
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:hover,
+.widget-buttons-grid > flowbox > flowboxchild > button.active:hover {
+  background: @accent-hover;
+  color: @on-secondary;
+  border: 1px solid alpha(@accent, 0.75);
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:active,
+.widget-buttons-grid > flowbox > flowboxchild > button.active:active {
+  background: @accent;
+  color: #000000;
+  border: 1px solid alpha(@accent, 0.85);
+}
+
+/* MPRIS */
+
+.widget-mpris {
+  background: alpha(@surface-container, 0.82);
+  border-radius: 16px;
+  color: @text;
+  margin: 20px 6px;
+  border: 1px solid @subtle-border;
+}
+
+.widget-mpris-player {
+  background-color: @card-bg-strong;
+  border-radius: 22px;
+  padding: 6px 14px;
+  margin: 6px;
+}
+
+.widget-mpris > box > button {
+  color: @text;
+  border-radius: 20px;
+}
+
+.widget-mpris button {
+  color: alpha(@text, 0.6);
+}
+
+.widget-mpris button:hover {
+  color: @text;
+}
+
+.widget-mpris-album-art {
+  border-radius: 16px;
+}
+
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.widget-mpris-subtitle {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: @text-muted;
+}
+
+picture.mpris-background {
+  opacity: 0;
+}
+
+/* Volume */
+
+.widget-volume {
+  background: alpha(@surface-container, 0.88);
+  color: @text;
+  padding: 4px;
+  margin: 6px;
+  border-radius: 6px;
+  border: 1px solid @subtle-border;
+}
+
+/* =========================
+   FLOATING NOTIFICATIONS
+   ========================= */
+
+.floating-notifications.background .notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.floating-notifications.background .notification-row .notification-background {
+  background: @popup-bg-strong;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.6);
+  border: 1px solid @border-color;
+  border-radius: 24px;
+  margin: 16px;
+  padding: 0;
+}
+
+.floating-notifications.background .notification-row .notification-background .notification {
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.floating-notifications.background .notification-row .notification-background .notification.critical {
+  border: 2px solid @urgent;
+}
+
+.floating-notifications.background .notification-row .notification-background .notification .notification-content {
+  margin: 14px;
+}
+
+.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * {
+  min-height: 3.4em;
+}
+
+.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action {
+  border-radius: 8px;
+  background-color: @button-bg;
+  margin: 6px;
+  border: 1px solid transparent;
+}
+
+.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
+  background-color: @button-bg-hover;
+  border: 1px solid alpha(@accent, 0.35);
+}
+
+.floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
+  background-color: @button-bg-active;
+  color: @on-primary;
+}
+
+.image {
+  margin: 10px 20px 10px 0;
+}
+
+.summary {
+  font-weight: 800;
+  font-size: 1rem;
+  color: @text;
+}
+
+.body {
+  font-size: 0.8rem;
+  color: @text-muted;
+}
+
+.floating-notifications.background .notification-row .notification-background .close-button {
+  margin: 6px;
+  padding: 2px;
+  border-radius: 6px;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.floating-notifications.background .notification-row .notification-background .close-button:hover {
+  background-color: @hover-bg;
+  border: 1px solid alpha(@accent, 0.35);
+}
+
+.floating-notifications.background .notification-row .notification-background .close-button:active {
+  background-color: @pressed-bg;
+  color: @on-primary;
+}

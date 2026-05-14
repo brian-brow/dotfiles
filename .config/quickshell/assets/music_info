@@ -1,0 +1,204 @@
+#!/bin/bash
+
+## Get data
+STATUS="$(playerctl status 2>/dev/null)"
+
+get_status() {
+  if [[ $STATUS == "Playing" ]]; then
+    echo "/home/brian/.config/eww/assets/pause.png"
+  else
+    echo "/home/brian/.config/eww/assets/play.png"
+  fi
+}
+
+get_song() {
+  song=$(playerctl metadata xesam:title)
+  if [[ -z "$song" ]]; then
+    echo "Offline"
+  else
+    echo "$song"
+  fi
+}
+
+get_artist() {
+  artist=$(playerctl metadata xesam:artist)
+  if [[ -z "$artist" ]]; then
+    echo "Offline"
+  else
+    echo "$artist"
+  fi
+}
+
+get_album() {
+  album=$(playerctl metadata xesam:album)
+  if [[ -z "$album" ]]; then
+    echo "Offline"
+  else
+    echo "$album"
+  fi
+}
+
+get_position() {
+  position=$(playerctl position 2>/dev/null | cut -d'.' -fi)
+  if [[ -z "$position" ]]; then
+    echo "0"
+  else
+    echo "$position"
+  fi
+}
+
+get_length() {
+  length=$(playerctl metadata mpris:length 2>/dev/null)
+  if [[ -z "$length" ]]; then
+    echo "0"
+  else
+    echo $((length / 1000000))
+  fi
+}
+
+get_progress() {
+  position=$(get_position)
+  length=$(get_length)
+  if [[ $length -gt 0 ]]; then
+    echo $((position * 100 / length))
+  else
+    echo "0"
+  fi
+}
+
+format_time() {
+  local seconds=$1
+  if [[ -z "$seconds" ]] || [[ $seconds -eq 0 ]]; then
+    echo "0:00"
+  else
+    printf "%d:%02d" $((seconds / 60)) $((seconds % 60))
+  fi
+}
+
+get_position_formatted() {
+  position=$(get_position)
+  format_time $position
+}
+
+get_length_formatted() {
+  length=$(get_length)
+  format_time $length
+}
+
+get_ttime() {
+  ttime=$(playerctl metadata mpris:length)
+  if [[ -z "$ttime" ]]; then
+    echo "0:00"
+  else
+    echo "$ttime"
+  fi
+}
+
+get_cover() {
+  prefix="file://"
+
+  old_track="$(playerctl metadata mpris:artUrl 2>/dev/null)"
+
+  old_track_trimmed=${old_track#"$prefix"}
+
+  if [[ -n "$old_track_trimmed" ]] && [[ -f "$old_track_trimmed" ]]; then
+    echo "$old_track_trimmed"
+  else
+    echo "/home/brian/.config/eww/assets/default-artwork.png"
+  fi
+}
+
+wait_for_track_change() {
+  prefix="file://"
+  old_track="$(playerctl metadata xesam:title 2>/dev/null)"
+  old_track_trimmed="${old_track#file://}"
+  timeout=50
+  waited=0
+
+  while [[ $waited -lt $timeout ]]; do
+    sleep 0.2
+    new_track=$(playerctl metadata xesam:title 2>/dev/null)
+    echo $new_track
+    if [[ "$new_track" != "$old_track_trimmed" ]]; then
+      sleep 0.3
+      break
+    fi
+    waited=$((waited + 1))
+  done
+}
+
+case "$1" in
+--song)
+  get_song
+  ;;
+--artist)
+  get_artist
+  ;;
+--album)
+  get_album
+  ;;
+--status)
+  get_status
+  ;;
+--position)
+  get_position
+  ;;
+--length)
+  get_length
+  ;;
+--progress)
+  get_progress
+  ;;
+--position-formatted)
+  get_position_formatted
+  ;;
+--length-formatted)
+  get_length_formatted
+  ;;
+--cover)
+  get_cover
+  ;;
+--toggle)
+  playerctl play-pause
+  ;;
+--next)
+  playerctl next
+  wait_for_track_change
+  get_cover
+  ;;
+--prev)
+  playerctl previous
+  wait_for_track_change
+  get_cover
+  ;;
+*)
+  echo "Usage: $0 {--song|--artist|--album|--status|--position|--length|--progress|--position-formatted|--length-formatted|--cover|--toggle|--next|--prev}"
+  exit 1
+  ;;
+esac
+
+# if [[ "$1" == "--song" ]]; then
+#   get_song
+# elif [[ "$1" == "--artist" ]]; then
+#   get_artist
+# elif [[ "$1" == "--status" ]]; then
+#   get_status
+# elif [[ "$1" == "--time" ]]; then
+#   get_time
+# elif [[ "$1" == "--ctime" ]]; then
+#   get_ctime
+# elif [[ "$1" == "--ttime" ]]; then
+#   get_ttime
+# elif [[ "$1" == "--cover" ]]; then
+#   get_cover
+# elif [[ "$1" == "--toggle" ]]; then
+#   playerctl play-pause
+# elif [[ "$1" == "--next" ]]; then
+#   playerctl next
+#   wait_for_track_change
+#   get_cover
+# elif [[ "$1" == "--prev" ]]; then
+#   playerctl previous
+#   wait_for_track_change
+#   get_cover
+# fi
