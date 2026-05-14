@@ -77,6 +77,9 @@ FILES=(
   .config/starship.toml
   .config/libinput-gestures.conf
   .config/user-dirs.dirs
+
+  # Wallpapers
+  Wallpapers
 )
 
 COPIED=0
