@@ -18,29 +18,28 @@ if [ ! -f "$CONFIG" ]; then
       networkmanager iwd wpa_supplicant wireless_tools
       pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber
       gst-plugin-pipewire libpulse
-      nvidia-open lib32-opencl-nvidia libva-nvidia-driver
       zram-generator
+
+      # GPU — comment out whichever don't apply
+      nvidia-open libva-nvidia-driver
+      # lib32-opencl-nvidia  # uncomment if needed
 
       # Desktop environment
       hyprland hyprlock hyprpicker hyprpolkitagent uwsm
       sddm xdg-desktop-portal-hyprland xdg-utils
       qt5-wayland qt6-wayland qt6ct
-      wlogout swaync dunst libnotify
-      quickshell-git rofi wofi
+      swaync dunst libnotify
+      rofi
       polkit-kde-agent
 
       # Daily driver apps
       kitty neovim tmux lazygit
       fastfetch htop fzf bat tree jq yazi
-      oh-my-posh
-      zen-browser-bin
-      vesktop
+      thunderbird mpv gimp
       obsidian
-      thunderbird
-      mpv gimp
 
       # Theming
-      kvantum nwg-look matugen papirus-icon-theme
+      kvantum nwg-look papirus-icon-theme
       ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-mononoki-nerd
       noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
       woff2-font-awesome gnome-themes-extra
@@ -61,14 +60,14 @@ if [ ! -f "$CONFIG" ]; then
     )
 
     AUR_PACKAGES=(
+      yay
       quickshell-git
       zen-browser-bin
       vesktop
       matugen
       oh-my-posh
-      bluetui
+      wlogout
       claude-code
-      yay
     )
 
     echo "Installing official packages..."
