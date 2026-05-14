@@ -56,7 +56,6 @@ if [ ! -f "$CONFIG" ]; then
       7zip
 
       # Extra
-      virt-manager libvirt dnsmasq qemu-desktop
       obs-studio
 
       # Wallpapers
@@ -72,6 +71,7 @@ if [ ! -f "$CONFIG" ]; then
       oh-my-posh
       wlogout
       claude-code
+      vm-curator
     )
 
     echo "Installing official packages..."
