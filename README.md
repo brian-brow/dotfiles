@@ -4,16 +4,10 @@
 
 Personal Arch Linux dotfiles for a Hyprland-based desktop environment.
 Managed with two scripts that sync configs between the live system and this repo.
-
-## Philosophy
-
-The setup is built around **matugen** — a material design color generator that
+The setup is built around **matugen**, a material design color generator that
 derives a full color palette from the current wallpaper. Every component
-(Hyprland borders, Kitty, swaync, wlogout, rofi, the Quickshell bar) pulls from
-this palette, so the entire shell recolors itself automatically when the
-wallpaper changes. The goal is a cohesive feel where the desktop and
-its tools feel like one unified thing rather than a collection of independently
-themed apps. The rofi theme I did 100% steal but I can't remember where I found it.
+pulls from this palette, so the entire shell recolors itself automatically when the
+wallpaper changes.
 
 ## Screenshots
 
