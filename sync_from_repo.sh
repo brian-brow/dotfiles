@@ -14,7 +14,7 @@ if [ ! -f "$CONFIG" ]; then
       # System foundation
       base base-devel linux linux-headers linux-firmware amd-ucode
       grub os-prober efibootmgr dosfstools mtools
-      sudo nano man-db git wget curl unzip zip
+      sudo nano man-db git wget curl unzip zip rsync
       networkmanager iwd wpa_supplicant wireless_tools
       pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber
       gst-plugin-pipewire libpulse
@@ -71,7 +71,9 @@ if [ ! -f "$CONFIG" ]; then
     )
 
     echo "Installing official packages..."
-    sudo pacman -Syu --needed "${PACKAGES[@]}"
+    sudo pacman -Syu --needed "${PACKAGES[@]}" || {
+      echo "Some packages failed to install, continuing anyway..."
+    }
 
     echo
     echo "Installing AUR packages..."
@@ -82,7 +84,9 @@ if [ ! -f "$CONFIG" ]; then
       makepkg -si --noconfirm
       cd "$REPO_DIR"
     fi
-    yay -S --needed "${AUR_PACKAGES[@]}"
+    yay -S --needed "${AUR_PACKAGES[@]}" || {
+      echo "Some AUR packages failed to install, continuing anyway..."
+    }
 
     echo
     echo "Packages installed."
