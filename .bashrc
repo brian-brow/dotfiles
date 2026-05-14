@@ -13,3 +13,5 @@ eval "$(oh-my-posh init bash --config ~/.config/ohmyposh/brian.omp.json)"
 
 export PATH="$HOME/scripts:$PATH"
 export QT_STYLE_OVERRIDE=kvantum
+
+fastfetch
