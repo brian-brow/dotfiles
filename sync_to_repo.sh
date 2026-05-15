@@ -101,11 +101,13 @@ for rel in "${FILES[@]}"; do
   mkdir -p "$(dirname "$dst")"
 
   if [ -d "$src" ]; then
-    rsync -a --delete "$src/" "$dst/"
     echo "  DIR   $rel"
+    diff -rq "$src/" "$dst/" 2>&1 | sed 's/^/    /' || true
+    rsync -a --delete "$src/" "$dst/"
   else
-    cp -p "$src" "$dst"
     echo "  FILE  $rel"
+    diff -rq "$src" "$dst" 2>&1 | sed 's/^/    /' || true
+    cp -p "$src" "$dst"
   fi
   ((COPIED++)) || true
 done
