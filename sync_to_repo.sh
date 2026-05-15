@@ -45,6 +45,7 @@ FILES=(
   # Terminal / shell
   .config/kitty
   .config/fastfetch
+  .config/fish
 
   # Editor
   .config/nvim
@@ -72,9 +73,7 @@ FILES=(
 
   # Single files
   .bashrc
-  .zshrc
   .gitconfig
-  .config/starship.toml
   .config/libinput-gestures.conf
   .config/user-dirs.dirs
 
