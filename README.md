@@ -19,6 +19,21 @@ wallpaper changes.
 |--------|--------|
 | ![Rofi](screenshots/rofi.png) | ![Swaync](screenshots/swaync.png) |
 
+## Stack
+
+| Category | Tool |
+|----------|------|
+| WM | Hyprland |
+| Terminal | Kitty |
+| Shell | Fish |
+| Editor | Neovim |
+| Bar | Quickshell |
+| Notifications | Swaync |
+| Launcher | Rofi |
+| Browser | Zen |
+| Theming | Matugen |
+| Bootloader | GRUB |
+
 ## Setup
 
 ### Fresh install
