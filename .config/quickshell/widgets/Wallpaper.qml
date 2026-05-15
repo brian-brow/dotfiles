@@ -64,6 +64,8 @@ PanelWindow {
   onVisibleChanged: {
     if (visible) {
       wallpapers = []
+      allWallpapers = []
+      previewSource = "/home/brian/.config/hypr/current_wallpaper"
       wallpaperList.running = true
       textinput.text = ""
       textinput.forceActiveFocus()
