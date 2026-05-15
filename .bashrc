@@ -12,7 +12,8 @@ PS1='[\u@\h \W]\$ '
 eval "$(oh-my-posh init bash --config ~/.config/ohmyposh/brian.omp.json)"
 
 export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export EDITOR="nvim"
 export QT_STYLE_OVERRIDE=kvantum
 
 fastfetch
-export PATH="$HOME/.local/bin:$PATH"

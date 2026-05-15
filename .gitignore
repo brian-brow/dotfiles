@@ -1,1 +1,7 @@
 .config/vesktop/sessionData/
+.config/wlogout/colors.css
+.config/kitty/colors.conf
+.config/hypr/colors.conf
+.config/rofi/colors.rasi
+.config/ohmyposh/colors.json
+.config/swaync/style.css

@@ -2,16 +2,16 @@
     "Created": "Phunt_Vieg_",
     "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
 		"palette": {
-    	"white":    "#f0dede",
-    	"black":    "#1a1111",
-    	"blue":     "#ffb3b6",
-    	"lavender": "#e6bdbd",
-    	"cyan":     "#ffb3b6",
-    	"green":    "#5d3f40",
-    	"purple":   "#524343",
+    	"white":    "#f0dfd8",
+    	"black":    "#1a120e",
+    	"blue":     "#ffb691",
+    	"lavender": "#e6beac",
+    	"cyan":     "#ffb691",
+    	"green":    "#5c4033",
+    	"purple":   "#52443d",
    		"red":      "#ffb4ab",
-    	"pink":     "#5d3f40",
-    	"yellow":   "#8f4a4e",
+    	"pink":     "#5c4033",
+    	"yellow":   "#8d4e2b",
     	"orange":   "#93000a"
     },
     "blocks": [
@@ -23,7 +23,7 @@
           {
             "foreground": "p:cyan",
             "style": "plain",
-            "template": " \u256d\u2500",
+            "template": "\u256d\u2500",
             "type": "text"
           },
           {
@@ -31,7 +31,7 @@
             "foreground": "p:cyan",
             "leading_diamond": "\ue0b6",
             "style": "diamond",
-            "template": " {{ .UserName }} ",
+            "template": " {{ .UserName }}",
             "trailing_diamond": "\ue0b0",
             "type": "session"
           },
@@ -81,14 +81,14 @@
           {
             "foreground": "p:cyan",
             "style": "plain",
-            "template": " \u2570\u2500\u25B6</>",
+            "template": "\u2570\u2500\u25B6</>",
             "type": "text"
           }
         ]
       }
     ],
     "transient_prompt": {
-      "template": "<p:red>\uf489 </><p:blue>\uf0da</><p:pink>\uf105</> "
+      "template": "<p:blue>\uf0da</><p:pink>\uf105</> "
     },
     "final_space": true,
     "version": 7

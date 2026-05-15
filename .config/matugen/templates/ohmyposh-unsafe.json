@@ -7,7 +7,7 @@
           {
             "foreground": "p:cyan",
             "style": "plain",
-            "template": " \u256d\u2500",
+            "template": "\u256d\u2500",
             "type": "text"
           },
           {
@@ -15,7 +15,7 @@
             "foreground": "p:cyan",
             "leading_diamond": "\ue0b6",
             "style": "diamond",
-            "template": " {{ .UserName }} ",
+            "template": " {{ .UserName }}",
             "trailing_diamond": "\ue0b0",
             "type": "session"
           },
@@ -65,14 +65,14 @@
           {
             "foreground": "p:cyan",
             "style": "plain",
-            "template": " \u2570\u2500\u25B6</>",
+            "template": "\u2570\u2500\u25B6</>",
             "type": "text"
           }
         ]
       }
     ],
     "transient_prompt": {
-      "template": "<p:red>\uf489 </><p:blue>\uf0da</><p:pink>\uf105</> "
+      "template": "<p:blue>\uf0da</><p:pink>\uf105</> "
     },
     "final_space": true,
     "version": 7
