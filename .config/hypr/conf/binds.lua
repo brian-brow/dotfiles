@@ -1,5 +1,6 @@
 -- binds.lua
 
+-- Variables
 local mainMod = "SUPER"
 local terminal = "kitty"
 local fileManager = "nemo"
@@ -17,7 +18,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 -- hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("rofimoji"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-todo.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout.sh"))
--- hl.bind(mainMod .. " + R", hl.dsp.layout_msg("togglesplit"))
+hl.bind(mainMod .. " + R", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
 -- hl.bind(mainMod .. " + W",   hl.dsp.exec_cmd("~/.config/hypr/scripts/wallpaper.sh"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs ipc call wallpaper toggle"))
@@ -36,17 +37,17 @@ hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
--- -- Resize (repeatable)
--- hl.binde("ALT + SHIFT + H", hl.dsp.window.resize_active(-40, 0))
--- hl.binde("ALT + SHIFT + L", hl.dsp.window.resize_active(40, 0))
--- hl.binde("ALT + SHIFT + K", hl.dsp.window.resize_active(0, -40))
--- hl.binde("ALT + SHIFT + J", hl.dsp.window.resize_active(0, 40))
---
--- -- Move floating window (repeatable)
--- hl.binde(mainMod .. " + CTRL + H", hl.dsp.window.move_active(-40, 0))
--- hl.binde(mainMod .. " + CTRL + L", hl.dsp.window.move_active(40, 0))
--- hl.binde(mainMod .. " + CTRL + K", hl.dsp.window.move_active(0, -40))
--- hl.binde(mainMod .. " + CTRL + J", hl.dsp.window.move_active(0, 40))
+-- Resize (repeatable)
+hl.bind("ALT + SHIFT + H", hl.dsp.window.resize({ x = "-40", y = "0", relative = "true" }), { repeating = true })
+hl.bind("ALT + SHIFT + L", hl.dsp.window.resize({ x = "40", y = "0", relative = "true" }), { repeating = true })
+hl.bind("ALT + SHIFT + K", hl.dsp.window.resize({ x = "0", y = "-40", relative = "true" }), { repeating = true })
+hl.bind("ALT + SHIFT + J", hl.dsp.window.resize({ x = "0", y = "40", relative = "true" }), { repeating = true })
+
+-- Move floating window (repeatable)
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.move({ x = "-40", y = "0", relative = "true" }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.window.move({ x = "40", y = "0", relative = "true" }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.move({ x = "0", y = "-40", relative = "true" }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.move({ x = "0", y = "40", relative = "true" }), { repeating = true })
 
 -- Workspacese
 
@@ -65,33 +66,6 @@ for i = 1, 5 do
 		end
 	end)
 end
-
--- hl.bind(mainMod .. " + 1", hl.dsp.focus({ workspace = "1", on_current_monitor = "false" }))
-
--- -- Workspaces: Two monitors (monitor id * 5 + n)
--- local function ws_for(n)
--- 	return string.format(
--- 		"hyprctl dispatch workspace $(( $(hyprctl monitors -j | jq '.[] | select(.focused == true).id') * 5 + %d ))",
--- 		n
--- 	)
--- end
--- local function move_ws_for(n)
--- 	return string.format(
--- 		"hyprctl dispatch movetoworkspace $(( $(hyprctl monitors -j | jq '.[] | select(.focused == true).id') * 5 + %d ))",
--- 		n
--- 	)
--- end
---
--- for i = 1, 5 do
--- 	hl.bind(mainMod .. " + " .. i, hl.dsp.exec_cmd(ws_for(i)))
--- 	hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.exec_cmd(move_ws_for(i)))
--- end
-
--- One monitor (commented out)
--- for i = 1, 5 do
---   hl.bind(mainMod .. " + " .. i,         hl.dsp.workspace(i))
---   hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.move_to_workspace(i))
--- end
 
 -- Scroll through workspaces
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
