@@ -13,19 +13,17 @@ configuration {
 }
 
 window {
-    /* properties for window widget */
     transparency:                "real";
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       1000px;
+    width:                       500px;
     x-offset:                    0px;
     y-offset:                    0px;
 
-    /* properties for all widgets */
     enabled:                     true;
-    border:			 2px solid;
-    border-color:		 @secondary-container;
+    border:                      2px solid;
+    border-color:                @secondary-container;
     border-radius:               15px;
     cursor:                      "default";
     background-color:            @on-primary-fixed;
@@ -33,30 +31,18 @@ window {
 
 mainbox {
     enabled:                     true;
-    spacing:                     0px;
-    background-color:            transparent;
-    orientation:                 horizontal;
-    children:                    [ "imagebox", "listbox" ];
-}
-
-imagebox {
-    padding:                     20px;
-    background-color:            transparent;
-    background-image:            url("~/.config/hypr/current_wallpaper", height);
-    orientation:                 vertical;
-    children:                    [ "inputbar", "dummy", "mode-switcher" ];
-}
-
-listbox {
     spacing:                     20px;
     padding:                     20px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    [ "message", "listview" ];
+    children:                    [ "inputbar", "listbox", "mode-switcher" ];
 }
 
-dummy {
+listbox {
+    spacing:                     20px;
     background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
 }
 
 inputbar {
@@ -64,14 +50,14 @@ inputbar {
     spacing:                     10px;
     padding:                     15px;
     border-radius:               10px;
-    background-color:		 @on-primary;
-    text-color:			 @on-surface;
+    background-color:            @on-primary;
+    text-color:                  @on-surface;
     children:                    [ "textbox-prompt-colon", "entry" ];
 }
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "  ";
+    str:                         "  ";
     background-color:            inherit;
     text-color:                  inherit;
 }
@@ -84,7 +70,7 @@ entry {
     placeholder-color:           inherit;
 }
 
-mode-switcher{
+mode-switcher {
     enabled:                     true;
     spacing:                     20px;
     background-color:            transparent;
@@ -113,7 +99,7 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
+
     spacing:                     10px;
     background-color:            transparent;
     text-color:                  @on-surface;

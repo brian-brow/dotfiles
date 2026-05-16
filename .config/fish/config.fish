@@ -17,5 +17,12 @@ if status is-interactive
         oh-my-posh init fish --config ~/.config/ohmyposh/brian.omp.json | source
     end
 
+    set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+    set -x MANROFFOPT -c
+
+    fish_add_path ~/scripts
+
+    alias tk 'tmux list-sessions -F \'#S\' | xargs -I{} tmux kill-session -t {}'
+
     fastfetch
 end

@@ -78,3 +78,8 @@ output_path = '~/.config/quickshell/Theme.qml'
 input_path = '~/.config/matugen/templates/swaync.css'
 output_path = '~/.config/swaync/style.css'
 post_hook = 'pkill swaync; swaync &'
+
+[templates.nvim_pallette]
+input_path = "~/.config/matugen/templates/palette.lua"
+output_path = "~/.config/nvim/lua/matugen-nvim/lua/matugen/palette.lua"
+post_hook = "~/scripts/nvim-reload.sh"
