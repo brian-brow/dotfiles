@@ -51,6 +51,27 @@ ShellRoot {
     }
   }
 
+  // Screenshot {
+  //   id: screenshot
+  //   theme: systemTheme
+  // }
+
+  // IpcHandler {
+  //   target: "screenshot"
+
+  //   function open() {
+  //     screenshot.visible = true
+  //   }
+
+  //   function close() {
+  //     screenshot.visible = false
+  //   }
+
+  //   function toggle() {
+  //     screenshot.visible = !screenshot.visible
+  //   }
+  // }
+
   NetworkManager {
     id: networkManager
     theme: systemTheme

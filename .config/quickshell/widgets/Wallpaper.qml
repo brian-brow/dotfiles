@@ -72,11 +72,6 @@ PanelWindow {
     }
   }
 
-  FileView {
-    id: dirView
-    path: "/home/brian/Wallpapers"
-  }
-
   Rectangle {
     id: win
     anchors.fill: parent

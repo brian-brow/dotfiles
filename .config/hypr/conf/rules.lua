@@ -23,7 +23,7 @@ hl.window_rule({ match = { tag = "multimedia_video*" }, opacity = 1.0 })
 
 -- Per-app opacity
 hl.window_rule({ match = { class = "^(kitty)$" }, opacity = 0.95 })
-hl.window_rule({ match = { class = "^(wofi)$" }, opacity = 0.1 })
+-- hl.window_rule({ match = { class = "^(rofi)$" }, opacity = 0.1 })
 hl.window_rule({ match = { class = "^(waybar)$" }, opacity = 0.85 })
 hl.window_rule({ match = { class = "^(com.github.th_ch.youtube_music)$" }, opacity = 0.95 })
 hl.window_rule({ match = { class = "^(vesktop)$" }, opacity = 0.95 })
@@ -31,7 +31,8 @@ hl.window_rule({ match = { class = "^(firefox)$" }, opacity = 0.95 })
 hl.window_rule({ match = { class = "^(org.qutebrowser.qutebrowser)$" }, opacity = 0.95 })
 
 -- Layer rules
-hl.layer_rule({ match = { namespace = "wofi" }, blur = true })
+hl.layer_rule({ match = { namespace = "rofi" }, blur = true })
+hl.layer_rule({ match = { namespace = "rofi" }, ignore_alpha = 0.0 })
 hl.layer_rule({ match = { namespace = "logout_dialog" }, blur = true })
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true })
 hl.layer_rule({ match = { namespace = "quickshell" }, blur = true })
