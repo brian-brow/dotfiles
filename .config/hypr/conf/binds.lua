@@ -24,7 +24,7 @@ hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs ipc call wallpaper toggle"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("qs ipc call bluetooth toggle"))
 --- hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("qs ipc call screenshot toggle"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("~/.config/hypr/scripts/screenshot.sh"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("screenshot.sh"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen(1))
 hl.bind(mainMod .. " + 8", hl.dsp.exec_cmd("qs ipc call 8ball toggle"))
 
