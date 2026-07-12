@@ -12,7 +12,7 @@ Item {
     property real startAngle: 90
     property int iconPixelSize: 12
     property int iconXOffset: -2
-    property int iconYOffset: 0
+    property int iconYOffset: -1
 
     width: 26
     height: 26

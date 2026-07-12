@@ -1,9 +1,8 @@
 import QtQuick
 import Quickshell.Io
 
-Item {
+Rectangle {
   id: root
-
   required property QtObject theme
   required property QtObject source
 
@@ -15,54 +14,70 @@ Item {
   property int barSpacing: 3
   property int barRadius: 8
   property int padding: 8
-  property bool showBackground: true
+  property bool containsMouse: false
+  Timer {
+    id: debounceTimer
+    interval: 120
+    repeat: false
+    onTriggered: {
+      root.containsMouse = false
+    }
+  }
+
+  signal hoveredChanged(bool hovered)
 
   implicitWidth: visibleBarCount * (barWidth + barSpacing) - barSpacing + padding * 2
 
-  Rectangle {
-    color: root.showBackground ? root.theme.bg : "transparent"
-    radius: 16
+  color: root.containsMouse ? theme.surface_container : theme.surface_container_lowest
+  Behavior on color { ColorAnimation { duration: 120 } }
 
+  radius: 16
+
+  Row {
     anchors.fill: parent
+    anchors.leftMargin: root.padding
+    anchors.rightMargin: root.padding
+    spacing: root.barSpacing
 
-    Row {
-      anchors.fill: parent
-      anchors.leftMargin: root.padding
-      anchors.rightMargin: root.padding
-      spacing: root.barSpacing
+    Repeater {
+      model: root.visibleBarCount
+      Rectangle {
+        readonly property int sourceIndex: root.mirror
+        ? root.startIndex + (root.visibleBarCount - 1 - index)
+        : root.startIndex + index
 
-      Repeater {
-        model: root.visibleBarCount
-
-        Rectangle {
-          readonly property int sourceIndex: root.mirror
-          ? root.startIndex + (root.visibleBarCount - 1 - index)
-          : root.startIndex + index
-
-          // width: (root.width - ((root.visibleBarCount - 1) * root.barSpacing)) / root.visibleBarCount
-          width: 3
-          height: {
-            const value = root.source.bars[sourceIndex] || 0
-            return Math.min(root.height, Math.max(root.minBarHeight, (value / 100) * root.height))
-          }
-
-          radius: root.barRadius
-          color: root.theme.primary
-          anchors.verticalCenter: parent.verticalCenter
+        width: root.barWidth
+        height: {
+          const value = root.source.bars[sourceIndex] || 0
+          return Math.min(root.height, Math.max(root.minBarHeight, (value / 100) * root.height))
         }
+        radius: root.barRadius
+        color: root.theme.primary
+        anchors.verticalCenter: parent.verticalCenter
       }
     }
+  }
 
-    MouseArea {
-      anchors.fill: parent
-      cursorShape: Qt.PointingHandCursor
-      onClicked: toggleProc.running = true
+  MouseArea {
+    id: mouseArea
+    anchors.fill: parent
+    hoverEnabled: true
+    z: 10
+    cursorShape: Qt.PointingHandCursor
+    onClicked: toggleProc.running = true
+
+    onContainsMouseChanged: {
+      if (containsMouse) {
+        debounceTimer.stop()
+        root.containsMouse = true
+      } else {
+        debounceTimer.start()
+      }
     }
   }
 
   Process {
     id: toggleProc
     command: ["playerctl", "play-pause"]
-    onRunningChanged: if (!running) running = false
   }
 }

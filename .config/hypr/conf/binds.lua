@@ -38,6 +38,9 @@ hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ workspace = "e+1" }))
+
 -- Resize (repeatable)
 hl.bind("ALT + SHIFT + H", hl.dsp.window.resize({ x = "-40", y = "0", relative = "true" }), { repeating = true })
 hl.bind("ALT + SHIFT + L", hl.dsp.window.resize({ x = "40", y = "0", relative = "true" }), { repeating = true })
@@ -45,10 +48,10 @@ hl.bind("ALT + SHIFT + K", hl.dsp.window.resize({ x = "0", y = "-40", relative =
 hl.bind("ALT + SHIFT + J", hl.dsp.window.resize({ x = "0", y = "40", relative = "true" }), { repeating = true })
 
 -- Move floating window (repeatable)
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.move({ x = "-40", y = "0", relative = "true" }), { repeating = true })
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.window.move({ x = "40", y = "0", relative = "true" }), { repeating = true })
-hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.move({ x = "0", y = "-40", relative = "true" }), { repeating = true })
-hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.move({ x = "0", y = "40", relative = "true" }), { repeating = true })
+-- hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.move({ x = "-40", y = "0", relative = "true" }), { repeating = true })
+-- hl.bind(mainMod .. " + CTRL + L", hl.dsp.window.move({ x = "40", y = "0", relative = "true" }), { repeating = true })
+-- hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.move({ x = "0", y = "-40", relative = "true" }), { repeating = true })
+-- hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.move({ x = "0", y = "40", relative = "true" }), { repeating = true })
 
 -- Workspacese
 

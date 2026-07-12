@@ -19,6 +19,7 @@ ShellRoot {
       // Pass the screen and theme into each instance
       screen: modelData 
       theme: systemTheme
+      onCavaHovered: hovered => cavaPopup.barHovered = hovered
     }
   }
 
@@ -29,6 +30,12 @@ ShellRoot {
   //     theme: systemTheme
   //   }
   // }
+
+  CavaPopup {
+    id: cavaPopup
+    theme: systemTheme
+    screen: Quickshell.screens[1]
+  }
 
   Wallpaper {
     id: wallpaper
@@ -133,5 +140,15 @@ ShellRoot {
       magic8Ball.visible = !magic8Ball.visible
       magic8Ball.dragging = true
     }
+  }
+
+  Battery {
+    id: battery
+  }
+  IpcHandler {
+    target: "battery"
+    function open()   { battery.visible = true }
+    function close()  { battery.visible = false }
+    function toggle() { battery.visible = !battery.visible }  // was wrongly !magic8Ball.visible
   }
 }

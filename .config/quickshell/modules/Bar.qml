@@ -13,6 +13,7 @@ PanelWindow {
   required property var modelData
 
   screen: modelData
+  signal cavaHovered(bool hovered)
 
   anchors.top: true
   anchors.left: true
@@ -55,19 +56,20 @@ PanelWindow {
         }
       }
 
-      RowLayout {
-        anchors.centerIn: parent
-        spacing: 12
+      CavaView {
+        id: cava
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        theme: root.theme
+        source: cavaSource
+        startIndex: 0
+        visibleBarCount: 40
+        mirror: false
+        width: 255
+        height: 22
 
-        CavaView {
-          theme: root.theme
-          source: cavaSource
-          startIndex: 0
-          visibleBarCount: 40
-          mirror: false
-          width: 80
-          height: 22
-        }
+        // onContainsMouseChanged: root.cavaHovered(cava.containsMouse)
+        onContainsMouseChanged: root.cavaHovered(false)
       }
 
       RowLayout {
