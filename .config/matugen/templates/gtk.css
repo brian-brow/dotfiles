@@ -1,0 +1,57 @@
+/* matugen template — GTK3 named color overrides
+ * Generated dynamically; do not edit directly.
+ * Drop into ~/.config/gtk-3.0/gtk.css (or wherever your gtk.css @imports from)
+ * ABOVE the base theme's gtk.css so these @define-color rules win. */
+
+/* --- Core surfaces / text --- */
+@define-color theme_fg_color {{ colors.on_surface.default.hex }};
+@define-color theme_text_color {{ colors.on_surface.default.hex }};
+@define-color theme_bg_color {{ colors.surface.default.hex }};
+@define-color theme_base_color {{ colors.surface_container_low.default.hex }};
+
+@define-color theme_selected_bg_color {{ colors.primary.default.hex }};
+@define-color theme_selected_fg_color {{ colors.on_primary.default.hex }};
+
+@define-color insensitive_bg_color {{ colors.surface.default.hex }};
+@define-color insensitive_fg_color {{ colors.outline.default.hex }};
+@define-color insensitive_base_color {{ colors.surface_container_lowest.default.hex }};
+
+/* --- Backdrop / unfocused window variants --- */
+@define-color theme_unfocused_fg_color {{ colors.on_surface.default.hex }};
+@define-color theme_unfocused_text_color {{ colors.on_surface.default.hex }};
+@define-color theme_unfocused_bg_color {{ colors.surface.default.hex }};
+@define-color theme_unfocused_base_color {{ colors.surface_container_low.default.hex }};
+@define-color theme_unfocused_selected_bg_color {{ colors.primary.default.hex }};
+@define-color theme_unfocused_selected_fg_color {{ colors.on_primary.default.hex }};
+@define-color unfocused_insensitive_color {{ colors.outline.default.hex }};
+
+/* --- Borders --- */
+@define-color borders alpha({{ colors.outline.default.hex }}, 0.35);
+@define-color unfocused_borders alpha({{ colors.outline.default.hex }}, 0.25);
+
+/* --- Status colors --- */
+@define-color warning_color {{ colors.tertiary.default.hex }};
+@define-color error_color {{ colors.error.default.hex }};
+@define-color success_color {{ colors.primary_fixed.default.hex }};
+
+/* --- Window manager colors --- */
+@define-color wm_title {{ colors.on_surface.default.hex }};
+@define-color wm_unfocused_title alpha({{ colors.on_surface.default.hex }}, 0.7);
+@define-color wm_highlight alpha({{ colors.on_surface.default.hex }}, 0.1);
+@define-color wm_bg {{ colors.surface_container_low.default.hex }};
+@define-color wm_unfocused_bg {{ colors.surface_container.default.hex }};
+
+/* --- Misc app-facing colors --- */
+@define-color content_view_bg {{ colors.surface_container_low.default.hex }};
+@define-color placeholder_text_color {{ colors.outline.default.hex }};
+@define-color text_view_bg {{ colors.surface_dim.default.hex }};
+
+/* --- Links --- */
+@define-color link_color {{ colors.primary.default.hex }};
+@define-color visited_link_color {{ colors.tertiary.default.hex }};
+
+/* --- Budgie tasklist (present in this theme, harmless elsewhere) --- */
+@define-color budgie_tasklist_indicator_color alpha({{ colors.on_surface.default.hex }}, 0.7);
+@define-color budgie_tasklist_indicator_color_active {{ colors.primary.default.hex }};
+@define-color budgie_tasklist_indicator_color_active_window alpha({{ colors.primary.default.hex }}, 0.8);
+@define-color budgie_tasklist_indicator_color_attention {{ colors.tertiary.default.hex }};
