@@ -1,0 +1,57 @@
+/* matugen template — GTK3 named color overrides
+ * Generated dynamically; do not edit directly.
+ * Drop into ~/.config/gtk-3.0/gtk.css (or wherever your gtk.css @imports from)
+ * ABOVE the base theme's gtk.css so these @define-color rules win. */
+
+/* --- Core surfaces / text --- */
+@define-color theme_fg_color #e5e1e9;
+@define-color theme_text_color #e5e1e9;
+@define-color theme_bg_color #131318;
+@define-color theme_base_color #1c1b20;
+
+@define-color theme_selected_bg_color #c5c0ff;
+@define-color theme_selected_fg_color #2d2960;
+
+@define-color insensitive_bg_color #131318;
+@define-color insensitive_fg_color #928f99;
+@define-color insensitive_base_color #0e0e13;
+
+/* --- Backdrop / unfocused window variants --- */
+@define-color theme_unfocused_fg_color #e5e1e9;
+@define-color theme_unfocused_text_color #e5e1e9;
+@define-color theme_unfocused_bg_color #131318;
+@define-color theme_unfocused_base_color #1c1b20;
+@define-color theme_unfocused_selected_bg_color #c5c0ff;
+@define-color theme_unfocused_selected_fg_color #2d2960;
+@define-color unfocused_insensitive_color #928f99;
+
+/* --- Borders --- */
+@define-color borders alpha(#928f99, 0.35);
+@define-color unfocused_borders alpha(#928f99, 0.25);
+
+/* --- Status colors --- */
+@define-color warning_color #ebb9d0;
+@define-color error_color #ffb4ab;
+@define-color success_color #e3dfff;
+
+/* --- Window manager colors --- */
+@define-color wm_title #e5e1e9;
+@define-color wm_unfocused_title alpha(#e5e1e9, 0.7);
+@define-color wm_highlight alpha(#e5e1e9, 0.1);
+@define-color wm_bg #1c1b20;
+@define-color wm_unfocused_bg #201f25;
+
+/* --- Misc app-facing colors --- */
+@define-color content_view_bg #1c1b20;
+@define-color placeholder_text_color #928f99;
+@define-color text_view_bg #131318;
+
+/* --- Links --- */
+@define-color link_color #c5c0ff;
+@define-color visited_link_color #ebb9d0;
+
+/* --- Budgie tasklist (present in this theme, harmless elsewhere) --- */
+@define-color budgie_tasklist_indicator_color alpha(#e5e1e9, 0.7);
+@define-color budgie_tasklist_indicator_color_active #c5c0ff;
+@define-color budgie_tasklist_indicator_color_active_window alpha(#c5c0ff, 0.8);
+@define-color budgie_tasklist_indicator_color_attention #ebb9d0;
