@@ -19,7 +19,7 @@ ShellRoot {
       // Pass the screen and theme into each instance
       screen: modelData 
       theme: systemTheme
-      onCavaHovered: hovered => cavaPopup.barHovered = hovered
+      onCavaHovered: hovered => settingsPopup.barHovered = hovered
     }
   }
 
@@ -31,10 +31,10 @@ ShellRoot {
   //   }
   // }
 
-  CavaPopup {
-    id: cavaPopup
+  SettingsPopup {
+    id: settingsPopup
     theme: systemTheme
-    screen: Quickshell.screens[1]
+    screen: Hyprland.focusedMonitor?.screen ?? Quickshell.screens[0]
   }
 
   Wallpaper {

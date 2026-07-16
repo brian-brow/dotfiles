@@ -69,7 +69,7 @@ PanelWindow {
         height: 22
 
         // onContainsMouseChanged: root.cavaHovered(cava.containsMouse)
-        onContainsMouseChanged: root.cavaHovered(false)
+        onContainsMouseChanged: root.cavaHovered(containsMouse)
       }
 
       RowLayout {
