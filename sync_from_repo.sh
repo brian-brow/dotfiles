@@ -59,7 +59,7 @@ if [ ! -f "$CONFIG" ]; then
       obs-studio
 
       # Wallpapers
-      Wallpapers
+      # Wallpapers
     )
 
     AUR_PACKAGES=(

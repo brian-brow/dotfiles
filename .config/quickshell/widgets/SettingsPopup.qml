@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
@@ -47,9 +48,10 @@ PanelWindow {
       id: calendarCard
       anchors.top: parent.top
       anchors.left: parent.left
-      anchors.margins: 16
-      width: parent.width * 0.5 - 16
-      height: parent.height * 0.7 - 16
+      anchors.margins: 8
+      anchors.bottom: slidersCard.top
+      anchors.bottomMargin: 8
+      width: parent.width * 0.5 - 8
       radius: 10
       color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.05)
       border.color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.08)
@@ -119,17 +121,211 @@ PanelWindow {
       }
     }
 
+    // ── QUICK ACTION BUTTONS (top-right, remaining space) ────────
+    Item {
+      id: quickActionsColumn
+      anchors.top: parent.top
+      anchors.topMargin: 8
+      anchors.left: calendarCard.right
+      anchors.leftMargin: 8
+      anchors.right: parent.right
+      anchors.rightMargin: 8
+      anchors.bottom: slidersCard.top
+      anchors.bottomMargin: 8
+
+      Rectangle {
+        id: weatherCard
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: (parent.height - 8) * 2 / 3
+        radius: 10
+        color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.05)
+        border.color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.08)
+        border.width: 1
+
+        property string temperature: "92°F"
+        property string condition: "Cloudy"
+
+        function refreshWeather() {
+          weatherProc.running = false
+          weatherProc.running = true
+        }
+
+        Process {
+          id: weatherProc
+          command: ["bash", "-c", "curl -s 'https://wttr.in/?format=%t+%C&u'"]
+
+          stdout: SplitParser {
+            onRead: data => {
+              const text = data.trim()
+              if (!text)
+              return
+
+              const parts = text.split(" ")
+              weatherCard.temperature = parts[0] || weatherCard.temperature
+              weatherCard.condition = parts.slice(1).join(" ") || weatherCard.condition
+            }
+          }
+        }
+
+        Timer {
+          interval: 300000
+          running: false
+          repeat: false
+          onTriggered: weatherCard.refreshWeather()
+        }
+
+        Component.onCompleted: weatherCard.refreshWeather()
+
+        Column {
+          anchors.centerIn: parent
+          spacing: 2
+
+          Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: weatherCard.temperature
+            color: "white"
+            font.family: root.theme.fontFamily
+            font.pixelSize: 40
+            font.bold: true
+          }
+
+          Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: weatherCard.condition
+            color: Qt.rgba(1, 1, 1, 0.6)
+            font.family: root.theme.fontFamily
+            font.pixelSize: 25
+          }
+        }
+      }
+
+      GridLayout {
+        id: quickActionsGrid
+        anchors.top: weatherCard.bottom
+        anchors.topMargin: 8
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        columns: 2
+        columnSpacing: 8
+
+        Repeater {
+          model: 2
+
+          Rectangle {
+            id: quickButton
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            radius: 10
+            property bool flashing: false
+            color: quickButton.flashing
+            ? Qt.rgba(0, 0, 0, 0.25)
+            : quickButtonMouseArea.containsMouse
+            ? Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.08)
+            : Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.05)
+            border.color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.08)
+            border.width: 1
+
+            Behavior on color {
+              ColorAnimation { duration: 120 }
+            }
+
+            // Button 1 opens the wallpaper picker; the rest are placeholders — drop a command in here later
+            Process {
+              id: quickButtonProc
+              command: index === 0 ? ["qs", "ipc", "call", "wallpaper", "open"] : []
+            }
+
+            Timer {
+              id: quickButtonFlashTimer
+              interval: 150
+              onTriggered: quickButton.flashing = false
+            }
+
+            Text {
+              anchors.centerIn: parent
+              text: index === 0 ? "" : index + 1
+              color: "white"
+              font.family: root.theme.fontFamily
+              font.pixelSize: index === 0 ? 18 : 16
+            }
+
+            MouseArea {
+              id: quickButtonMouseArea
+              anchors.fill: parent
+              hoverEnabled: true
+              onClicked: {
+                quickButton.flashing = true
+                quickButtonFlashTimer.restart()
+                quickButtonProc.running = false
+                quickButtonProc.running = true
+              }
+            }
+          }
+        }
+      }
+    }
+
     PwObjectTracker {
       objects: [ Pipewire.defaultAudioSink ]
+    }
+
+    // ── SLIDERS CARD (background behind brightness/volume rows) ─
+    Rectangle {
+      id: slidersCard
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.leftMargin: 8
+      anchors.rightMargin: 8
+      anchors.top: brightnessIcon.top
+      anchors.topMargin: -8
+      anchors.bottom: volumeSlider.bottom
+      anchors.bottomMargin: -8
+      radius: 10
+      color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.05)
+      border.color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.08)
+      border.width: 1
+    }
+
+    // ── VOLUME ICON ─────────────────────────────────
+    Text {
+      id: volumeIcon
+      anchors.left: parent.left
+      anchors.leftMargin: 16
+      anchors.verticalCenter: volumeSlider.verticalCenter
+      width: 20
+      horizontalAlignment: Text.AlignHCenter
+      font.family: root.theme.fontFamily
+      font.pixelSize: 14
+      color: root.theme.fg
+
+      readonly property var sink: Pipewire.defaultAudioSink
+
+      function isBluetoothSink(sink) {
+        if (!sink) return false
+
+        const name = (sink.name || "").toLowerCase()
+        const desc = (sink.description || "").toLowerCase()
+
+        return name.includes("bluez") || desc.includes("bluetooth")
+      }
+
+      text: sink?.audio?.muted
+      ? "󰝟"
+      : isBluetoothSink(sink)
+      ? ""
+      : ""
     }
 
     // ── VOLUME SLIDER (bottom row) ─────────────────
     Slider {
       id: volumeSlider
-      anchors.left: parent.left
+      anchors.left: volumeIcon.right
       anchors.right: parent.right
       anchors.bottom: parent.bottom
-      anchors.leftMargin: 16
+      anchors.leftMargin: 8
       anchors.rightMargin: 16
       anchors.bottomMargin: 16
       height: 24
@@ -188,19 +384,73 @@ PanelWindow {
       }
     }
 
+    // ── BRIGHTNESS ICON ─────────────────────────────
+    Text {
+      id: brightnessIcon
+      anchors.left: parent.left
+      anchors.leftMargin: 16
+      anchors.verticalCenter: brightnessSlider.verticalCenter
+      width: 20
+      horizontalAlignment: Text.AlignHCenter
+      font.family: root.theme.fontFamily
+      font.pixelSize: 14
+      color: root.theme.fg
+
+      text: brightnessSlider.value < 33 ? "󰃞"
+      : brightnessSlider.value < 66 ? "󰃟"
+      : "󰃠"
+    }
+
     // ── BRIGHTNESS SLIDER (row above volume) ───────
     Slider {
       id: brightnessSlider
-      anchors.left: parent.left
+      anchors.left: brightnessIcon.right
       anchors.right: parent.right
       anchors.bottom: volumeSlider.top
-      anchors.leftMargin: 16
+      anchors.leftMargin: 8
       anchors.rightMargin: 16
       anchors.bottomMargin: 8
       height: 24
       from: 0
       to: 100
-      value: 50
+
+      function refreshBrightness() {
+        brightnessProc.running = false
+        brightnessProc.running = true
+      }
+
+      // Only sync FROM brightnessctl when the user isn't actively dragging
+      Process {
+        id: brightnessProc
+        command: ["bash", "-c", "brightnessctl -m | cut -d, -f4 | tr -d '%'"]
+
+        stdout: SplitParser {
+          onRead: data => {
+            const n = parseInt(data.trim())
+            if (!isNaN(n) && !brightnessSlider.pressed)
+            brightnessSlider.value = n
+          }
+        }
+      }
+      Process {
+        id: brightnessSetProc
+      }
+
+      Timer {
+        interval: 120
+        running: true
+        repeat: true
+        onTriggered: brightnessSlider.refreshBrightness()
+      }
+
+      Component.onCompleted: refreshBrightness()
+
+      // Push value TO brightnessctl as the user drags
+      onMoved: {
+        brightnessSetProc.command = ["bash", "-c", `brightnessctl set ${Math.round(value)}%`]
+        brightnessSetProc.running = false
+        brightnessSetProc.running = true
+      }
 
       background: Rectangle {
         x: brightnessSlider.leftPadding
