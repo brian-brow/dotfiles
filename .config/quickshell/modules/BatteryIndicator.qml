@@ -11,6 +11,14 @@ CircularProgress {
   property bool charging: false
   property int percentage: 0
 
+  signal clicked()
+
+  MouseArea {
+    anchors.fill: parent
+    cursorShape: Qt.PointingHandCursor
+    onClicked: root.clicked()
+  }
+
   value: percentage
   lineWidth: 2
   progressColor: charging ? theme.tertiary : theme.primary
@@ -20,9 +28,9 @@ CircularProgress {
     ? theme.error
     : theme.fg
 
-  //iconPixelSize: 16      // makes glyph bigger/smaller
+  iconPixelSize: 10      // makes glyph bigger/smaller
   iconXOffset: 0        // moves glyph left/right
-  iconYOffset: 1        // moves glyph left/right
+  iconYOffset: 0        // moves glyph left/right
 
   icon: percentage
 

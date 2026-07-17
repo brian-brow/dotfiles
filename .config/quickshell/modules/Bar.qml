@@ -14,6 +14,7 @@ PanelWindow {
 
   screen: modelData
   signal cavaHovered(bool hovered)
+  signal batteryClicked()
 
   anchors.top: true
   anchors.left: true
@@ -52,7 +53,11 @@ PanelWindow {
         OsButton { theme: root.theme }
         Workspaces {
           theme: root.theme
-          screenIndex: Quickshell.screens.indexOf(root.screen)
+          screenIndex: root.screen.name === "eDP-1" ? 0
+                     : root.screen.name === "DP-9" || root.screen.name === "DP-10" ? 1
+                     : root.screen.name === "DP-11" || root.screen.name === "DP-13" ? 2
+                     : 0
+          // screenIndex: Quickshell.screens.indexOf(root.screen)
         }
       }
 
@@ -83,11 +88,14 @@ PanelWindow {
           theme: root.theme
           // visible: Quickshell.screens.indexOf(root.screen) === 0
         }
-        // Temp { theme: root.theme }
-        // BrightnessIndicator { theme: root.theme }
+        Temp { theme: root.theme }
+        BrightnessIndicator { theme: root.theme }
         VolumeIndicator { theme: root.theme }
         Network { theme: root.theme }
-        // BatteryIndicator { theme: root.theme }
+        BatteryIndicator {
+          theme: root.theme
+          onClicked: root.batteryClicked()
+        }
         Clock { theme: root.theme }
         Notification { theme: root.theme }
         PowerButton { theme: root.theme }

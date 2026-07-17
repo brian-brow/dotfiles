@@ -5,7 +5,7 @@ local mainMod = "SUPER"
 local terminal = "kitty"
 local fileManager = "nemo"
 local menu = "rofi"
-local browser = "zen-browser"
+local browser = "firefox"
 
 -- App launchers
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
@@ -15,18 +15,16 @@ hl.bind(mainMod .. " + T", hl.dsp.window.close())
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/scripts/application_launcher.sh"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("qs ipc call network toggle"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
--- hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("rofimoji"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-todo.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout.sh"))
 hl.bind(mainMod .. " + R", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
--- hl.bind(mainMod .. " + W",   hl.dsp.exec_cmd("~/.config/hypr/scripts/wallpaper.sh"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs ipc call wallpaper toggle"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("qs ipc call bluetooth toggle"))
---- hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("qs ipc call screenshot toggle"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("screenshot.sh"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen(1))
-hl.bind(mainMod .. " + 8", hl.dsp.exec_cmd("qs ipc call 8ball toggle"))
+hl.bind(mainMod .. " + SHIFT + 8", hl.dsp.exec_cmd("qs ipc call 8ball toggle"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("qs ipc call powerprofiles toggle"))
 
 -- Float + resize together
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -53,8 +51,7 @@ hl.bind("ALT + SHIFT + J", hl.dsp.window.resize({ x = "0", y = "40", relative = 
 -- hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.move({ x = "0", y = "-40", relative = "true" }), { repeating = true })
 -- hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.move({ x = "0", y = "40", relative = "true" }), { repeating = true })
 
--- Workspacese
-
+-- Workspaces
 for i = 1, 5 do
 	hl.bind(mainMod .. " + " .. i, function()
 		local m = hl.get_monitor_at_cursor()
@@ -82,3 +79,5 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- Bare mouse scroll workspaces
 hl.bind("mouse_right", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind("mouse_left", hl.dsp.focus({ workspace = "e-1" }))
+
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })

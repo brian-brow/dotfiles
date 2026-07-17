@@ -15,6 +15,10 @@ CircularProgress {
   progressColor: theme.primary
   trackColor: Qt.alpha(theme.primary, 0.25)
   iconColor: theme.fg
+
+  iconXOffset: -2       // moves glyph left/right
+  iconYOffset: -1        // moves glyph left/right
+
   icon: brightness < 33 ? "󰃞"
   : brightness < 66 ? "󰃟"
   : "󰃠"
@@ -37,6 +41,9 @@ CircularProgress {
       }
     }
   }
+  Process {
+    id: brightnessSetProc
+  }
 
   Timer {
     id: brightnessRefreshTimer
@@ -47,4 +54,16 @@ CircularProgress {
   }
 
   Component.onCompleted: refreshBrightness()
+
+  MouseArea {
+    anchors.fill: parent
+    onWheel: wheel => {
+      const step = 5
+      const dir = wheel.angleDelta.y > 0 ? "+" : "-"
+      brightnessSetProc.command = ["bash", "-c", `brightnessctl set ${step}%${dir}`]
+      brightnessSetProc.running = false
+      brightnessSetProc.running = true
+      root.refreshBrightness()
+    }
+  }
 }

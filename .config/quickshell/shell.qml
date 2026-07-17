@@ -17,9 +17,10 @@ ShellRoot {
     model: Quickshell.screens
     delegate: Bar {
       // Pass the screen and theme into each instance
-      screen: modelData 
+      screen: modelData
       theme: systemTheme
       onCavaHovered: hovered => settingsPopup.barHovered = hovered
+      onBatteryClicked: powerProfiles.visible = !powerProfiles.visible
     }
   }
 
@@ -150,5 +151,26 @@ ShellRoot {
     function open()   { battery.visible = true }
     function close()  { battery.visible = false }
     function toggle() { battery.visible = !battery.visible }  // was wrongly !magic8Ball.visible
+  }
+
+  PowerProfiles {
+    id: powerProfiles
+    theme: systemTheme
+  }
+
+  IpcHandler {
+    target: "powerprofiles"
+
+    function open() {
+      powerProfiles.visible = true
+    }
+
+    function close() {
+      powerProfiles.visible = false
+    }
+
+    function toggle() {
+      powerProfiles.visible = !powerProfiles.visible
+    }
   }
 }

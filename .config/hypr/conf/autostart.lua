@@ -7,4 +7,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("qs -p ~/.config/quickshell/shell.qml")
 	-- hl.exec_cmd("libinput-gestures-setup start")
 	hl.exec_cmd("sleep 0.5 && hyprlock")
+
+	hl.exec_cmd("~/.config/hypr/scripts/watch-monitors.sh")
 end)

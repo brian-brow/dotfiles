@@ -22,7 +22,7 @@ RowLayout {
 
   function iconForState() {
     if (!connected) return "󰖪"
-    if (connectionType === "ethernet") return "󰈀"
+    if (connectionType.includes("ethernet")) return "󰈀"
     if (signalStrength < 25) return "󰤟"
     if (signalStrength < 50) return "󰤢"
     if (signalStrength < 75) return "󰤥"

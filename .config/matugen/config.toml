@@ -51,9 +51,9 @@ output_path = '~/.config/rofi/colors.rasi'
 #input_path = '~/.config/matugen/templates/spotify-colors.ini'
 #output_path = '~/.config/spicetify/Themes/text/color.ini'
 
-[templates.vesktop]
-input_path = '~/.config/matugen/templates/midnight-discord.css'
-output_path = '~/.config/vesktop/themes/matugen.css'
+# [templates.vesktop]
+# input_path = '~/.config/matugen/templates/midnight-discord.css'
+# output_path = '~/.config/vesktop/themes/matugen.css'
 
 [templates.ohmyposh]
 input_path  = '~/.config/matugen/templates/ohmyposh-safe.json'
