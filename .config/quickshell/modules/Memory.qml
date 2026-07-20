@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Shapes
+import Quickshell
 import Quickshell.Io
 
 Item {
@@ -190,5 +191,10 @@ Item {
       PathLine { x: root.xForIndex(28); y: root.yForValue(root.history[28]) }
       PathLine { x: root.xForIndex(29); y: root.yForValue(root.history[29]) }
     }
+  }
+  MouseArea {
+    anchors.fill: parent
+    cursorShape: Qt.PointingHandCursor
+    onClicked: Quickshell.execDetached(["kitty", "--class", "system-info", "-e", "btop"])
   }
 }

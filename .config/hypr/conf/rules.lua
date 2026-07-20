@@ -45,6 +45,15 @@ hl.layer_rule({ match = { namespace = "swaync-notification-window" }, ignore_alp
 hl.layer_rule({ match = { namespace = "selection" }, blur = false })
 -- hl.layer_rule({ match = { namespace = "discord" }, blur = true })
 
+-- rules for special windows
+hl.window_rule({ match = { class = "^(system-info)" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^(system-info)" }, center = true })
+hl.window_rule({ match = { class = "^(system-info)" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, fullscreen = true })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, no_blur = true })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, opacity = 1.0 })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, animation = "false" })
+
 -- Workspace to monitor assignment
 for i = 1, 5 do
 	hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })

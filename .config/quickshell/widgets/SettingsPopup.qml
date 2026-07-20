@@ -187,7 +187,7 @@ PanelWindow {
             text: weatherCard.temperature
             color: "white"
             font.family: root.theme.fontFamily
-            font.pixelSize: 40
+            font.pixelSize: 36
             font.bold: true
           }
 
@@ -196,7 +196,7 @@ PanelWindow {
             text: weatherCard.condition
             color: Qt.rgba(1, 1, 1, 0.6)
             font.family: root.theme.fontFamily
-            font.pixelSize: 25
+            font.pixelSize: 18
           }
         }
       }
@@ -235,7 +235,8 @@ PanelWindow {
             // Button 1 opens the wallpaper picker; the rest are placeholders — drop a command in here later
             Process {
               id: quickButtonProc
-              command: index === 0 ? ["qs", "ipc", "call", "wallpaper", "open"] : []
+              command: index === 0 ? ["qs", "ipc", "call", "wallpaper", "open"]
+                      : index === 1 ? ["qs", "ipc", "call", "8ball", "open"] : []
             }
 
             Timer {
@@ -246,10 +247,10 @@ PanelWindow {
 
             Text {
               anchors.centerIn: parent
-              text: index === 0 ? "" : index + 1
+              text: index === 0 ? "" : "󰲮"
               color: "white"
               font.family: root.theme.fontFamily
-              font.pixelSize: index === 0 ? 18 : 16
+              font.pixelSize: index === 0 ? 32 : 48
             }
 
             MouseArea {

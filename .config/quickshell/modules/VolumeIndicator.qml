@@ -42,6 +42,10 @@ CircularProgress {
         const delta = wheel.angleDelta.y > 0 ? 0.01 : -0.01
         root.sink.audio.volume = Math.max(0, Math.min(1, root.sink.audio.volume + delta))
       }
+      onClicked: {
+        if (!root.sink?.audio) return
+        root.sink.audio.muted = !root.sink.audio.muted
+      }
 
     }
   }
