@@ -5,6 +5,7 @@ import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import Qt5Compat.GraphicalEffects
 
 PanelWindow {
@@ -21,6 +22,12 @@ PanelWindow {
 
 
   WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
+
+  HyprlandFocusGrab {
+    id: focusGrab
+    windows: [root]
+    onCleared: root.visible = false
+  }
 
   property var filteredWallpapers: []
 
@@ -62,6 +69,7 @@ PanelWindow {
   property string previewSource: "/home/brian/.config/hypr/current_wallpaper"
 
   onVisibleChanged: {
+    focusGrab.active = visible
     if (visible) {
       wallpapers = []
       allWallpapers = []

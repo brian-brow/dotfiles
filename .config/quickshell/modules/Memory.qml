@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Shapes
+import Quickshell
 import Quickshell.Io
 
 Item {
@@ -24,6 +25,7 @@ Item {
     return i * (root.width / (history.length - 1))
   }
 
+
   Timer {
     interval: 2000
     running: true
@@ -45,7 +47,7 @@ Item {
           newArr.push(n)
 
           if (newArr.length > 30)
-            newArr.shift()
+          newArr.shift()
 
           root.history = newArr
         }
@@ -56,6 +58,7 @@ Item {
   Shape {
     anchors.fill: parent
     antialiasing: true
+
 
     ShapePath {
       strokeWidth: 0
@@ -190,5 +193,10 @@ Item {
       PathLine { x: root.xForIndex(28); y: root.yForValue(root.history[28]) }
       PathLine { x: root.xForIndex(29); y: root.yForValue(root.history[29]) }
     }
+  }
+  MouseArea {
+    anchors.fill: parent
+    cursorShape: Qt.PointingHandCursor
+    onClicked: Quickshell.execDetached(["kitty", "-e", "btop"])
   }
 }

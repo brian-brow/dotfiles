@@ -88,3 +88,7 @@ post_hook = "~/scripts/nvim-reload.sh"
 input_path = '~/.config/matugen/templates/gtk.css'
 output_path = '~/.local/share/themes/frosted/gtk-3.0/colors.css'
 post_hook = 'pkill nemo'
+
+[templates.blue-bubbles]
+input_path = '~/.config/matugen/templates/blue-bubbles.css'
+output_path = '~/.config/blue-bubbles/colors.css'

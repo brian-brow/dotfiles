@@ -111,4 +111,10 @@ RowLayout {
   }
 
   Component.onCompleted: root.refreshNetwork()
+
+  MouseArea {
+    anchors.fill: parent
+    cursorShape: Qt.PointingHandCursor
+    onClicked: Quickshell.execDetached(["kitty", "-e", "nmtui"])
+  }
 }
