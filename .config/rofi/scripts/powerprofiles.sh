@@ -7,6 +7,8 @@ set -euo pipefail
 
 THEME="${HOME}/.config/rofi/powerprofiles.rasi"
 
+pgrep rofi >/dev/null 2>&1 && killall rofi && exit 0
+
 current="$(powerprofilesctl get 2>/dev/null || echo "balanced")"
 
 declare -A profile_map=(

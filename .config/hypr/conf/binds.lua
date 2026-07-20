@@ -14,7 +14,6 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("vesktop"))
 hl.bind(mainMod .. " + T", hl.dsp.window.close())
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/scripts/application_launcher.sh"))
 -- hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("qs ipc call network toggle"))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("kitty --class 'system-info' nmtui"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-todo.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout.sh"))
@@ -22,15 +21,16 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("~/.config/rofi/scripts/power
 hl.bind(mainMod .. " + R", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs ipc call wallpaper toggle"))
--- hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("qs ipc call bluetooth toggle"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("kitty --class 'system-info' bluetui"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_tui.sh nmtui"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_tui.sh btop"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_tui.sh bluetui"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("screenshot.sh"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen(1))
 hl.bind(mainMod .. " + SHIFT + 8", hl.dsp.exec_cmd("qs ipc call 8ball toggle"))
 
 -- Float + resize together
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + V", hl.dsp.window.resize({ x = 1000, y = 600 }))
+hl.bind(mainMod .. " + V", hl.dsp.window.resize({ x = 1200, y = 800 }))
 
 -- Focus movement
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))

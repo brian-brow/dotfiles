@@ -193,7 +193,11 @@ PanelWindow {
 
           Text {
             anchors.horizontalCenter: parent.horizontalCenter
+            width: weatherCard.width - 16 
+            horizontalAlignment: Text.AlignHCenter
             text: weatherCard.condition
+            // text: "EVIL RAIN EVIL RAIN EVIL RAIN EVIL RAIN"
+            wrapMode: Text.WordWrap
             color: Qt.rgba(1, 1, 1, 0.6)
             font.family: root.theme.fontFamily
             font.pixelSize: 18

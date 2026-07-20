@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 import Quickshell.Io
 
 Rectangle {
@@ -50,5 +51,11 @@ Rectangle {
     font.pixelSize: 11
     width: parent.width * 0.8
     horizontalAlignment: Text.AlignHCenter
+  }
+
+  MouseArea {
+    anchors.fill: parent
+    cursorShape: Qt.PointingHandCursor
+    onClicked: Quickshell.execDetached(["kitty", "--class", "system-info", "-e", "btop"])
   }
 }

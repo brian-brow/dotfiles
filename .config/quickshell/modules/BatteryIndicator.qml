@@ -16,7 +16,7 @@ CircularProgress {
   MouseArea {
     anchors.fill: parent
     cursorShape: Qt.PointingHandCursor
-    onClicked: root.clicked()
+    onClicked: Quickshell.execDetached(["/home/brian/.config/rofi/scripts/powerprofiles.sh"])
   }
 
   value: percentage

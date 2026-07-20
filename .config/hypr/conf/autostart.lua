@@ -9,4 +9,5 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("sleep 0.5 && hyprlock")
 
 	hl.exec_cmd("~/.config/hypr/scripts/watch-monitors.sh")
+	hl.exec_cmd("hypridle")
 end)
