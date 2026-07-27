@@ -1,0 +1,157 @@
+// Waybar config modeled on the quickshell Bar.qml + modules/*.qml setup.
+// Icons, colors, thresholds, and click behavior are matched 1:1 where waybar
+// allows it; see the notes in style.css for the handful of things GTK CSS
+// can't reproduce (true circular progress rings, per-frame animations).
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "margin-top": 1,
+  "margin-left": 1,
+  "margin-right": 1,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/cava"
+  ],
+  "modules-right": [
+    "custom/memory",
+    "custom/temperature",
+    "custom/brightness",
+    "custom/volume",
+    "custom/network",
+    "battery",
+    "custom/notification",
+    "custom/power"
+  ],
+  // --- left ---
+  "custom/launcher": {
+    // OsButton.qml: toggles rofi's drun launcher
+    "format": "",
+    "tooltip": false,
+    "on-click": "pgrep -x rofi >/dev/null 2>&1 && killall rofi || rofi -show drun",
+    "margin-left": "auto",
+    "margin-right": "auto"
+  },
+  "hyprland/workspaces": {
+    // Workspaces.qml: 5 slots per monitor, offset by screen (eDP-1=0, DP-9/10=1, DP-11/13=2)
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "active": "",
+      "empty": ""
+    },
+    "persistent-workspaces": {
+      "eDP-1": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "DP-9": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "DP-10": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "DP-11": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "DP-13": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "on-click": "activate"
+  },
+  // --- center ---
+  "custom/cava": {
+    // CavaView.qml + CavaSource.qml: live waveform with the clock spliced
+    // into the middle (see scripts/cava.sh) so the time is always readable.
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "tooltip": false,
+    "on-click": "playerctl play-pause"
+  },
+  // --- right ---
+  // "custom/memory": {
+  //   // Memory.qml: usage % with a rolling sparkline, click opens btop
+  //   "exec": "~/.config/waybar/scripts/memory.sh",
+  //   "return-type": "json",
+  //   "interval": 2,
+  //   "on-click": "kitty --class system-info -e btop"
+  // },
+  "custom/temperature": {
+    // Temp.qml: CPU temp, colored by the same thresholds, click opens btop
+    "exec": "~/.config/waybar/scripts/temperature.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "kitty --class system-info -e btop"
+  },
+  "custom/brightness": {
+    // BrightnessIndicator.qml: icon thresholds, scroll to adjust
+    "exec": "~/.config/waybar/scripts/brightness.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+  "custom/volume": {
+    // VolumeIndicator.qml: muted/bluetooth/normal icon, click mutes, scroll adjusts
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 1%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 1%-"
+  },
+  "custom/network": {
+    // Network.qml: nmcli-driven state + icon, click opens nmtui
+    "exec": "~/.config/waybar/scripts/network.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty --class system-info -e nmtui"
+  },
+  "battery": {
+    // BatteryIndicator.qml: bare percentage, error color <=20%, click opens power profiles
+    "bat": "BAT0",
+    "format": "{capacity}%",
+    "format-charging": "{capacity}%",
+    "states": {
+      "warning": 20
+    },
+    "on-click": "/home/brian/.config/rofi/scripts/powerprofiles.sh"
+  },
+  "custom/notification": {
+    // Notification.qml: swaync dnd/inhibited/notification state -> icon
+    "exec": "~/.config/waybar/scripts/notification.sh",
+    "return-type": "json",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw"
+  },
+  "custom/power": {
+    // PowerButton.qml: opens wlogout
+    "format": "",
+    "tooltip": false,
+    "on-click": "wlogout"
+  }
+}

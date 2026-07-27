@@ -1,0 +1,245 @@
+/*
+ * Waybar theme modeled on the quickshell bar (Theme.qml + Bar.qml + modules/).
+ *
+ * Faithful where GTK3 CSS allows; the unavoidable differences:
+ *   - CircularProgress rings (brightness/volume/battery) can't draw a partial
+ *     arc, so they render as a ring-bordered chip with the icon/number inside
+ *     and the live level in the tooltip.
+ *   - Memory's line/area chart becomes a text-block sparkline.
+ *   - Per-property "Behavior" easings become plain CSS transitions.
+ */
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  /*font-size: 16px;           Theme.qml fontSize */
+  font-weight: bold;
+  min-height: 0;
+}
+
+@define-color bg #111318;
+@define-color fg #e1e2e9;
+@define-color primary #a8c8ff;
+@define-color tertiary #dbbce1;
+@define-color error #ffb4ab;
+@define-color muted #43474e;
+@define-color surface_container_lowest #0c0e13;
+@define-color surface_container #1d2024;
+
+window#waybar {
+  background: transparent;
+}
+
+/* the floating pill itself: Bar.qml's Rectangle (radius 10, bg @ 88%, 1px border @ 8%) */
+window#waybar > box {
+  background-color: rgba(17, 19, 24, 0.88);
+  border: 1px solid rgba(225, 226, 233, 0.08);
+  border-radius: 10px;
+  margin: 0;
+  padding: 0 9px;
+}
+
+#workspaces,
+#custom-launcher,
+#custom-power,
+#custom-cava,
+#custom-memory,
+#custom-temperature,
+#custom-brightness,
+#custom-volume,
+#custom-network,
+#battery,
+#custom-notification {
+  padding: 0;
+  margin: 0;
+}
+
+/* --- left: OsButton.qml-style pill (StatChip.qml: height 20, radius = height/2).
+   font pinned to 14px so the 16px base bump doesn't undo the tuned pill size. --- */
+
+#custom-launcher {
+  color: @bg;
+  background-color: @primary;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 0px 16px 0 10px;
+  margin: 5px 3px 5px 0;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+#custom-launcher:hover {
+  background-color: @bg;
+  color: @tertiary;
+}
+
+/* --- Workspaces.qml: dot per slot, tertiary when occupied, dim fg when empty,
+   full tertiary + 1.15x when active --- */
+
+#workspaces {
+  margin: 0 14px 0 0;
+  font-size: 16px;
+}
+
+#workspaces button {
+  color: rgba(219, 188, 225, 0.40);   /* occupied (ws exists) */
+  background: transparent;
+  padding: 0 9px;
+  border: none;
+  border-radius: 0;
+  min-width: 12px;
+  font-size: 16px;
+  transition: color 180ms ease;
+}
+
+#workspaces button.empty {
+  color: rgba(225, 226, 233, 0.10);   /* fg @ 10% */
+}
+
+#workspaces button.active {
+  color: @tertiary;
+  font-size: 18px;                     /* ~1.15 x 16 */
+}
+
+#workspaces button:hover {
+  color: shade(@tertiary, 1.3);
+  background: transparent;   /* stops the theme's hover fill */
+  box-shadow: none;          /* stops the highlight bleeding onto the bar */
+  font-size: 18px;
+}
+
+/* --- center: CavaView.qml pill (bg surface_container_lowest, radius 16),
+with the clock spliced into the middle by scripts/cava.sh --- */
+
+#custom-cava {
+  background-color: @surface_container_lowest;
+  border-radius: 16px;
+  padding: 0 8px;
+  transition: background-color 120ms ease;
+}
+
+#custom-cava:hover {
+  background-color: @surface_container;
+}
+
+/* --- right cluster (Bar.qml spacing 10) --- */
+
+#custom-memory,
+#custom-temperature,
+#custom-brightness,
+#custom-volume,
+#custom-network,
+#battery,
+#custom-notification,
+#custom-power {
+  margin-left: 10px;
+}
+
+/* Memory.qml: fg line over a primary-tinted fill; here a graph-only sparkline */
+#custom-memory {
+  color: @fg;
+}
+
+/* Temp.qml: solid filled circle (25px), number font 11, not bold */
+#custom-temperature {
+  color: @fg;
+  font-size: 11px;
+  font-weight: normal;
+  background-color: alpha(@primary, 0.25);
+  border-radius: 999px;
+  /* No min-width: it would pad the box wider than the number and, in a
+  right-packed module, that slack lands on the left and shoves the text
+  right. Symmetric padding keeps the box hugging the text so it centers. */
+min-height: 24px;
+padding: 0 7px;
+margin: 2px 0 2px 10px;
+}
+#custom-temperature.warm {
+  background-color: alpha(@primary, 0.5);
+}
+#custom-temperature.hot {
+  background-color: alpha(@error, 0.45);
+}
+#custom-temperature.critical {
+  background-color: alpha(@error, 0.75);
+}
+
+/* Brightness/Volume: CircularProgress approximated as a ring-bordered chip.
+Icon (fg) + level number; not bold, per the QML icon text. */
+#custom-brightness,
+#custom-volume {
+  color: @fg;
+  font-size: 13px;
+  font-weight: normal;
+  border: 2px solid alpha(@primary, 0.25);
+  border-radius: 999px;
+  min-height: 20px;
+  padding: 0 7px;
+  margin: 2px 0 2px 10px;
+}
+
+#custom-volume.muted {
+  color: @error;
+}
+
+/* Network.qml: primary-colored glyph, 16px bold, no background */
+#custom-network {
+  color: @primary;
+  font-size: 16px;
+  padding: 0 2px;
+}
+
+/* BatteryIndicator.qml: number inside the ring, small + not bold,
+error under 20%, tertiary ring while charging */
+#battery {
+  color: @fg;
+  font-size: 12px;
+  font-weight: normal;
+  border: 2px solid alpha(@primary, 0.25);
+  border-radius: 999px;
+  min-height: 20px;
+  padding: 0 7px;
+  margin: 2px 0 2px 10px;
+}
+#battery.charging {
+  color: @primary;
+  border-color: @tertiary;
+}
+#battery.warning:not(.charging) {
+  color: @error;
+}
+
+/* Notification.qml: 28px rounded hover highlight, tertiary glyph 18, not bold */
+#custom-notification {
+  color: @tertiary;
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 8px;
+  padding: 0 5px;
+  transition: background-color 120ms ease;
+}
+#custom-notification:hover {
+  background-color: alpha(@primary, 0.12);
+}
+
+/* --- right: PowerButton.qml-style pill, mirrors the launcher --- */
+
+#custom-power {
+  color: @bg;
+  background-color: @primary;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 0px 14px 0 10px;
+  margin: 5px 0 5px 10px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+#custom-power:hover {
+  background-color: @bg;
+  color: @tertiary;
+}
+
+tooltip {
+  background-color: @surface_container;
+  color: @fg;
+  border-radius: 8px;
+  border: 1px solid rgba(225, 226, 233, 0.08);
+}
