@@ -30,10 +30,11 @@
   ],
   // --- left ---
   "custom/launcher": {
-    // OsButton.qml: toggles rofi's drun launcher
-    "format": "",
+    "exec": "case $(awk -F= '/^ID=/{gsub(/\"/,\"\",$2); print $2}' /etc/os-release) in arch) echo '';; ubuntu) echo '';; fedora) echo '';; debian) echo '';; *) echo '';; esac",
+    "format": "{}",
     "tooltip": false,
     "on-click": "pgrep -x rofi >/dev/null 2>&1 && killall rofi || rofi -show drun",
+    "interval": "once",
     "margin-left": "auto",
     "margin-right": "auto"
   },
@@ -46,40 +47,19 @@
       "empty": ""
     },
     "persistent-workspaces": {
-      "eDP-1": [
+      "HDMI-A-1": [
         1,
         2,
         3,
         4,
         5
       ],
-      "DP-9": [
+      "DP-1": [
         6,
         7,
         8,
         9,
         10
-      ],
-      "DP-10": [
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "DP-11": [
-        11,
-        12,
-        13,
-        14,
-        15
-      ],
-      "DP-13": [
-        11,
-        12,
-        13,
-        14,
-        15
       ]
     },
     "on-click": "activate"

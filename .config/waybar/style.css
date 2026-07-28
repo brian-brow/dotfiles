@@ -61,7 +61,7 @@ window#waybar > box {
   background-color: @primary;
   border-radius: 10px;
   font-size: 14px;
-  padding: 0px 16px 0 10px;
+  padding: 0px 14px 0 8px;
   margin: 5px 3px 5px 0;
   transition: background-color 150ms ease, color 150ms ease;
 }
@@ -185,6 +185,7 @@ Icon (fg) + level number; not bold, per the QML icon text. */
   color: @primary;
   font-size: 16px;
   padding: 0 2px;
+  min-width: 20px;
 }
 
 /* BatteryIndicator.qml: number inside the ring, small + not bold,
@@ -227,8 +228,8 @@ error under 20%, tertiary ring while charging */
   background-color: @primary;
   border-radius: 10px;
   font-size: 14px;
-  padding: 0px 14px 0 10px;
-  margin: 5px 0 5px 10px;
+  padding: 0px 14px 0 8px;
+  margin: 5px 0px 5px 5px;
   transition: background-color 150ms ease, color 150ms ease;
 }
 
