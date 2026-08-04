@@ -32,6 +32,11 @@
       "app-name": "vesktop",
       "exec": "hyprctl dispatch focuswindow class:vesktop",
       "run-on": "action"
+    },
+    "open-screenshot": {
+      "app-name": "screenshot",
+      "exec": "home/brian/.config/hypr/scripts/open-latest-screenshot.sh",
+      "run-on": "action"
     }
   },
   "notification-visibility": {

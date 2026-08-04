@@ -9,7 +9,7 @@ PIDS=()
 COUNT=0
 for MON in $(hyprctl monitors -j | jq -r '.[].name'); do
   hyprctl dispatch "hl.dsp.focus({ monitor = \"$MON\" })"
-  kitty --class "$CLASS" -e cmatrix -abs &
+  kitty --class "$CLASS" -e node /home/brian/scripts/metaballs.js -abs &
   PIDS+=("$!")
   COUNT=$((COUNT + 1))
 

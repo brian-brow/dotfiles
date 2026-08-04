@@ -1,5 +1,8 @@
 [general]
-bars = 40
+bars = 16
+framerate = 60
+sleep_timer = 5
+sensitivity = 50
 
 [output]
 method = raw
@@ -9,5 +12,5 @@ bar_delimiter = 59
 frame_delimiter = 10
 
 [input]
-method = pipewire
+method = pulse
 source = auto
