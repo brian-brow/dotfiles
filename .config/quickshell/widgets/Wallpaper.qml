@@ -34,170 +34,200 @@ PanelWindow {
   Process {
     id: setWallpaper
     command: ["bash", "-c",
-      "SYMLINK_PATH=/home/brian/.config/hypr/current_wallpaper; " +
-      "mkdir -p \"$(dirname $SYMLINK_PATH)\"; " +
-      "ln -sf \"$SELECTED_PATH\" \"$SYMLINK_PATH\"; " +
-      "RANDOM_X=$((RANDOM % 1920)); RANDOM_Y=$((RANDOM % 1080)); " +
-      "awww img \"$SELECTED_PATH\" --transition-type outer --transition-duration 2 --transition-pos $RANDOM_X,$RANDOM_Y && " +
-      "matugen image \"$SELECTED_PATH\" --mode dark --source-color-index 0"
-    ]
-    environment: ({"SELECTED_PATH": root.selectedPath})
-    running: false
+    "SYMLINK_PATH=/home/brian/.config/hypr/current_wallpaper; " +
+    "mkdir -p \"$(dirname $SYMLINK_PATH)\"; " +
+    "ln -sf \"$SELECTED_PATH\" \"$SYMLINK_PATH\"; " +
+    "RANDOM_X=$((RANDOM % 1920)); RANDOM_Y=$((RANDOM % 1080)); " +
+    "awww img \"$SELECTED_PATH\" --transition-type outer --transition-duration 2 --transition-pos $RANDOM_X,$RANDOM_Y && " +
+    "matugen image \"$SELECTED_PATH\" --mode dark --source-color-index 0"
+  ]
+  environment: ({"SELECTED_PATH": root.selectedPath})
+  running: false
+}
+
+property string selectedPath: ""
+
+Process {
+  id: wallpaperList
+  command: ["bash", "-c", "ls -t /home/brian/Wallpapers/*.jpg /home/brian/Wallpapers/*.png /home/brian/Wallpapers/*.gif /home/brian/Wallpapers/*.jpeg 2>/dev/null"]
+  running: false
+  stdout: SplitParser {
+    onRead: data => {
+      allWallpapers.push(data)
+      allWallpapersChanged()
+      root.updateDisplayedWallpapers()
+    }
   }
+}
 
-  property string selectedPath: ""
+property var wallpapers: []
+property var allWallpapers: []
+property int wallpaperOffset: 0
+property string previewSource: "/home/brian/.config/hypr/current_wallpaper"
 
-  Process {
-    id: wallpaperList
-    command: ["bash", "-c", "ls -t /home/brian/Wallpapers/*.jpg /home/brian/Wallpapers/*.png /home/brian/Wallpapers/*.gif /home/brian/Wallpapers/*.jpeg 2>/dev/null | shuf"]
-    running: false
-    stdout: SplitParser {
-      onRead: data => {
-        allWallpapers.push(data)
-        allWallpapersChanged()
-        if (wallpapers.length < 25) {
-          wallpapers.push(data)
-          wallpapersChanged()
-          root.filteredWallpapers = root.wallpapers.slice()
-        }
-      }
+readonly property int wallpaperWindowSize: 25
+readonly property int wallpaperScrollStep: 5
+
+function updateDisplayedWallpapers() {
+  root.wallpapers = root.allWallpapers.slice(root.wallpaperOffset, root.wallpaperOffset + root.wallpaperWindowSize)
+  if (textinput.text === "") {
+    root.filteredWallpapers = root.wallpapers
+  }
+}
+
+function scrollWallpapers(step) {
+  const maxOffset = Math.max(0, root.allWallpapers.length - root.wallpaperWindowSize)
+  const newOffset = Math.min(maxOffset, Math.max(0, root.wallpaperOffset + step))
+  if (newOffset === root.wallpaperOffset) return
+  root.wallpaperOffset = newOffset
+  root.updateDisplayedWallpapers()
+}
+
+onVisibleChanged: {
+  focusGrab.active = visible
+  if (visible) {
+    wallpapers = []
+    allWallpapers = []
+    filteredWallpapers = []
+    wallpaperOffset = 0
+    previewSource = "/home/brian/.config/hypr/current_wallpaper"
+    wallpaperList.running = true
+    textinput.text = ""
+    textinput.forceActiveFocus()
+  }
+}
+
+Rectangle {
+  id: win
+  anchors.fill: parent
+  radius: 14
+  color: root.theme.bg
+  border.width: 1
+  border.color: Qt.alpha(root.theme.fg, 0.12)
+  layer.enabled: true
+  layer.effect: MultiEffect {
+    maskEnabled: true
+    maskThresholdMin: 0.5
+    maskSpreadAtMin: 1.0
+    maskSource: ShaderEffectSource {
+      sourceItem: mask
     }
   }
 
-  property var wallpapers: []
-  property var allWallpapers: []
-  property string previewSource: "/home/brian/.config/hypr/current_wallpaper"
+  Item {
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    width: parent.width / 2
 
-  onVisibleChanged: {
-    focusGrab.active = visible
-    if (visible) {
-      wallpapers = []
-      allWallpapers = []
-      previewSource = "/home/brian/.config/hypr/current_wallpaper"
-      wallpaperList.running = true
-      textinput.text = ""
-      textinput.forceActiveFocus()
-    }
-  }
-
-  Rectangle {
-    id: win
-    anchors.fill: parent
-    radius: 14
-    color: root.theme.bg
-    border.width: 1
-    border.color: Qt.alpha(root.theme.fg, 0.12)
-    layer.enabled: true
-    layer.effect: MultiEffect {
-      maskEnabled: true
-      maskThresholdMin: 0.5
-      maskSpreadAtMin: 1.0
-      maskSource: ShaderEffectSource {
-        sourceItem: mask
-      }
+    Image {
+      anchors.fill: parent
+      anchors.margins: 1
+      source: root.previewSource
+      fillMode: Image.PreserveAspectCrop
     }
 
     Item {
       anchors.top: parent.top
       anchors.left: parent.left
-      anchors.bottom: parent.bottom
-      width: parent.width / 2
+      anchors.right: parent.right
+      anchors.margins: 24
+      height: 48
 
-      Image {
+      Rectangle {
         anchors.fill: parent
-        anchors.margins: 1
-        source: root.previewSource
-        fillMode: Image.PreserveAspectCrop
+        radius: 8
+        color: root.theme.fg
+        border.width: 1
+        border.color: Qt.alpha(root.theme.fg, 0.2)
       }
 
-      Item {
-        anchors.top: parent.top
+      Text {
         anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.margins: 24
-        height: 48
-
-        Rectangle {
-          anchors.fill: parent
-          radius: 8
+        anchors.verticalCenter: parent.verticalCenter
+        leftPadding: 16
+        text: "󰍉"
+        font.family: "JetBrains Mono Nerd Font"
+        font.pixelSize: 16
+        color: Qt.alpha(root.theme.bg, 0.5)
+        z: 1
+      }
+      TextField {
+        id: textinput
+        anchors.fill: parent
+        topPadding: 0
+        bottomPadding: 0
+        leftPadding: 40
+        rightPadding: 12
+        placeholderText: "Search"
+        font.family: "JetBrains Mono Nerd Font"
+        font.pixelSize: 16
+        color: Qt.alpha(root.theme.bg, 0.5)
+        Keys.onEscapePressed: root.visible = false
+        verticalAlignment: TextInput.AlignVCenter
+        background: Rectangle {
           color: root.theme.fg
+          radius: 8
           border.width: 1
           border.color: Qt.alpha(root.theme.fg, 0.2)
         }
-
-        Text {
-          anchors.left: parent.left
-          anchors.verticalCenter: parent.verticalCenter
-          leftPadding: 16
-          text: "󰍉"
-          font.family: "JetBrains Mono Nerd Font"
-          font.pixelSize: 16
-          color: Qt.alpha(root.theme.bg, 0.5)
-          z: 1
+        onTextChanged: {
+          if (text === "") {
+            root.filteredWallpapers = root.wallpapers
+          } else {
+            root.filteredWallpapers = root.allWallpapers.filter(path => {
+              const filename = path.split("/").pop().toLowerCase()
+              const query = text.toLowerCase()
+              let qi = 0
+              for (let i = 0; i < filename.length && qi < query.length; i++) {
+                if (filename[i] === query[qi]) qi++
+              }
+              return qi === query.length
+            })
+            root.previewSource = root.filteredWallpapers[0]
+          }
         }
-        TextField {
-          id: textinput
-          anchors.fill: parent
-          topPadding: 0
-          bottomPadding: 0
-          leftPadding: 40
-          rightPadding: 12
-          placeholderText: "Search"
-          font.family: "JetBrains Mono Nerd Font"
-          font.pixelSize: 16
-          color: Qt.alpha(root.theme.bg, 0.5)
-          Keys.onEscapePressed: root.visible = false
-          verticalAlignment: TextInput.AlignVCenter
-          background: Rectangle {
-            color: root.theme.fg
-            radius: 8
-            border.width: 1
-            border.color: Qt.alpha(root.theme.fg, 0.2)
+        onAccepted: {
+          if (textinput.text == "") {
+            root.selectedPath = wallpapers[Math.floor(Math.random() * wallpapers.length)]
+            root.previewSource = root.selectedPath
+          } else {
+            root.selectedPath = root.filteredWallpapers[0]
           }
-          onTextChanged: {
-            if (text === "") {
-              root.filteredWallpapers = root.wallpapers
-            } else {
-              root.filteredWallpapers = root.allWallpapers.filter(path => {
-                const filename = path.split("/").pop().toLowerCase()
-                const query = text.toLowerCase()
-                let qi = 0
-                for (let i = 0; i < filename.length && qi < query.length; i++) {
-                  if (filename[i] === query[qi]) qi++
-                }
-                return qi === query.length
-              })
-              root.previewSource = root.filteredWallpapers[0]
-            }
-          }
-          onAccepted: {
-            if (textinput.text == "") {
-              root.selectedPath = wallpapers[Math.floor(Math.random() * wallpapers.length)]
-              root.previewSource = root.selectedPath
-            } else {
-              root.selectedPath = root.filteredWallpapers[0]
-            }
 
-            setWallpaper.running = false
-            setWallpaper.running = true
-            root.visible = false
-            console.log(wallpapers[Math.floor(Math.random() * wallpapers.length)])
-            console.log(textinput.text)
-            console.log("wallpapers length:", wallpapers.length)
-            console.log("selected path:", root.selectedPath)
-            console.log("preview source:", root.previewSource)
-          }
+          setWallpaper.running = false
+          setWallpaper.running = true
+          root.visible = false
+          console.log(wallpapers[Math.floor(Math.random() * wallpapers.length)])
+          console.log(textinput.text)
+          console.log("wallpapers length:", wallpapers.length)
+          console.log("selected path:", root.selectedPath)
+          console.log("preview source:", root.previewSource)
+        }
+      }
+    }
+  }
+
+  Item {
+    anchors.top: parent.top
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    width: parent.width / 2
+
+    WheelHandler {
+      target: null
+      onWheel: event => {
+        if (event.angleDelta.y < 0) {
+          root.scrollWallpapers(root.wallpaperScrollStep)
+        } else if (event.angleDelta.y > 0) {
+          root.scrollWallpapers(-root.wallpaperScrollStep)
         }
       }
     }
 
     Flow {
-      anchors.top: parent.top
-      anchors.right: parent.right
-      anchors.bottom: parent.bottom
+      anchors.fill: parent
       anchors.margins: 0
-      width: parent.width / 2
-      // padding: 6
       leftPadding: 16
       topPadding: 17
       spacing: 4
@@ -218,6 +248,9 @@ PanelWindow {
             asynchronous: true
             mipmap: true
             visible: false
+            sourceSize.width: 180
+            sourceSize.height: 180
+            cache: true
           }
 
           Rectangle {
@@ -249,6 +282,13 @@ PanelWindow {
             onExited: parent.scale = 1.0
             onPressed: parent.scale = 0.92
             onReleased: parent.scale = 1.0
+            onWheel: wheel => {
+              if (wheel.angleDelta.y < 0) {
+                root.scrollWallpapers(root.wallpaperScrollStep)
+              } else if (wheel.angleDelta.y > 0) {
+                root.scrollWallpapers(-root.wallpaperScrollStep)
+              }
+            }
           }
 
           Behavior on scale {
@@ -257,12 +297,13 @@ PanelWindow {
         }
       }
     }
-
-    Rectangle {
-      id: mask
-      anchors.fill: win
-      radius: win.radius
-      visible: false
-    }
   }
+
+  Rectangle {
+    id: mask
+    anchors.fill: win
+    radius: win.radius
+    visible: false
+  }
+}
 }
