@@ -2,31 +2,31 @@
 @define-color surface           #101418;
 @define-color surface-bright    #36393e;
 @define-color surface-dim       #101418;
-@define-color surface-container #1c2024;
+@define-color surface-container #1d2024;
 @define-color surface-variant   #42474e;
 
-@define-color foreground        #e0e2e8;
-@define-color text              #e0e2e8;
+@define-color foreground        #e1e2e8;
+@define-color text              #e1e2e8;
 @define-color text-muted        #c2c7cf;
 
-@define-color primary           #9ccbfb;
-@define-color on-primary        #003354;
-@define-color secondary         #b9c8da;
-@define-color on-secondary      #243240;
-@define-color tertiary          #d4bee6;
-@define-color on-tertiary       #392a49;
+@define-color primary           #9fcafc;
+@define-color on-primary        #003257;
+@define-color secondary         #bac8db;
+@define-color on-secondary      #253140;
+@define-color tertiary          #d6bee5;
+@define-color on-tertiary       #3a2948;
 
-@define-color accent            #9ccbfb;
-@define-color accent-hover      #b9c8da;
-@define-color accent-soft       #114a73;
+@define-color accent            #9fcafc;
+@define-color accent-hover      #bac8db;
+@define-color accent-soft       #174974;
 @define-color outline           #8c9199;
 @define-color outline-variant   #42474e;
 
 @define-color urgent            #ffb4ab;
 @define-color on-urgent         #690005;
 
-@define-color success           #d4bee6;
-@define-color warning           #b9c8da;
+@define-color success           #d6bee5;
+@define-color warning           #bac8db;
 
 @define-color card-bg           alpha(@surface-container, 0.78);
 @define-color card-bg-strong    alpha(@surface-container, 0.92);

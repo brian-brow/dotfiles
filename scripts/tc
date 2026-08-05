@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+selected=$(find ~/.config -mindepth 1 -maxdepth 1 -type d | sed 's|.*/.config/||' | fzf)
+full_path="$HOME/.config/$selected"
+
+session_name=$(echo "$selected" | tr '/' '-')
+
+if tmux has-session -t "$session_name" 2>/dev/null; then
+  tmux attach-session -t "$session_name"
+else
+  if [[ -z $TMUX ]]; then
+    tmux new-session -s "$session_name" -c "$full_path"
+  else
+    tmux new-session -ds "$session_name" -c "$full_path"
+    tmux switch-client -t "$session_name"
+  fi
+fi
