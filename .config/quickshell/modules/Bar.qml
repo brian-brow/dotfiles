@@ -16,6 +16,7 @@ PanelWindow {
   signal cavaHovered(bool hovered)
 
   anchors.top: true
+  // anchors.bottom: true
   anchors.left: true
   anchors.right: true
   implicitHeight: 33

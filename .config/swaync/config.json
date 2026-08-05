@@ -30,7 +30,7 @@
     },
     "focus-discord": {
       "app-name": "vesktop",
-      "exec": "hyprctl dispatch focuswindow class:vesktop",
+      "exec": "hyprctl dispatch 'hl.dsp.focus({ window = \"class:vesktop\" })'",
       "run-on": "action"
     }
   },
@@ -61,6 +61,10 @@
     "label": {
       "max-lines": 1,
       "text": " "
+    },
+    "notifications": {
+      "max-height": 100,
+      "max-width": 400
     },
     "mpris": {
       "image-size": 96,

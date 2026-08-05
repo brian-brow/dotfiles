@@ -7,7 +7,7 @@ Rectangle {
 
     implicitHeight: 20
     implicitWidth: label.implicitWidth + 16
-    radius: height / 2
+    radius: height / 2.5
     color: mouse.containsMouse ? theme.bg : theme.primary
 
     Text {
@@ -39,6 +39,7 @@ Rectangle {
         id: mouse
         anchors.fill: parent
         hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
         onClicked: scriptProc.running = true
     }
 }

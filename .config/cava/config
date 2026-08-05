@@ -1,5 +1,14 @@
 [general]
+mode = normal
+framerate = 60
+sensitivity = 150
+autosens = 1
 bars = 40
+
+[smoothing]
+noise_reduction = 30
+monstercat = 0
+integral = 60
 
 [output]
 method = raw

@@ -143,6 +143,7 @@ PanelWindow {
         color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.05)
         border.color: Qt.rgba(root.theme.fg.r, root.theme.fg.g, root.theme.fg.b, 0.08)
         border.width: 1
+        clip: true
 
         property string temperature: "92°F"
         property string condition: "Cloudy"
@@ -171,12 +172,67 @@ PanelWindow {
 
         Timer {
           interval: 300000
-          running: false
-          repeat: false
+          running: true
+          repeat: true
           onTriggered: weatherCard.refreshWeather()
         }
 
         Component.onCompleted: weatherCard.refreshWeather()
+        Item {
+          id: cloud
+          anchors.bottom: parent.bottom
+          anchors.bottomMargin: 10
+          width: 70
+          height: 40
+
+          property color cloudColor: "#555555"
+
+          // base/body — wide flat-ish bottom
+          Rectangle {
+            width: 50
+            height: 26
+            radius: 13
+            x: 10
+            y: 14
+            color: cloud.cloudColor
+          }
+          // left puff
+          Rectangle {
+            width: 26
+            height: 26
+            radius: 13
+            x: 4
+            y: 8
+            color: cloud.cloudColor
+          }
+          // center puff (tallest, sets the "peak")
+          Rectangle {
+            width: 34
+            height: 34
+            radius: 17
+            x: 22
+            y: 0
+            color: cloud.cloudColor
+          }
+          // right puff
+          Rectangle {
+            width: 24
+            height: 22
+            radius: 11
+            x: 44
+            y: 10
+            color: cloud.cloudColor
+          }
+
+          NumberAnimation on x {
+            from: -cloud.width
+            to: weatherCard.width
+            duration: 16000
+            loops: Animation.Infinite
+            running: true
+            easing.type: Easing.InOutSine
+          }
+        }
 
         Column {
           anchors.centerIn: parent
@@ -187,16 +243,20 @@ PanelWindow {
             text: weatherCard.temperature
             color: "white"
             font.family: root.theme.fontFamily
-            font.pixelSize: 40
+            font.pixelSize: 36
             font.bold: true
           }
 
           Text {
             anchors.horizontalCenter: parent.horizontalCenter
+            width: weatherCard.width - 16 
+            horizontalAlignment: Text.AlignHCenter
             text: weatherCard.condition
+            // text: "EVIL RAIN EVIL RAIN EVIL RAIN EVIL RAIN"
+            wrapMode: Text.WordWrap
             color: Qt.rgba(1, 1, 1, 0.6)
             font.family: root.theme.fontFamily
-            font.pixelSize: 25
+            font.pixelSize: 18
           }
         }
       }
@@ -236,7 +296,7 @@ PanelWindow {
             Process {
               id: quickButtonProc
               command: index === 0 ? ["qs", "ipc", "call", "wallpaper", "open"]
-                      : index === 1 ? ["qs", "ipc", "call", "8ball", "open"] : []
+              : index === 1 ? ["qs", "ipc", "call", "8ball", "open"] : []
             }
 
             Timer {
@@ -247,7 +307,7 @@ PanelWindow {
 
             Text {
               anchors.centerIn: parent
-              text: index === 0 ? "" : "󰲮"
+              text: index === 0 ? "󰕔" : "󰲮"
               color: "white"
               font.family: root.theme.fontFamily
               font.pixelSize: index === 0 ? 32 : 48

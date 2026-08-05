@@ -23,6 +23,7 @@ hl.window_rule({ match = { tag = "multimedia_video*" }, opacity = 1.0 })
 
 -- Per-app opacity
 hl.window_rule({ match = { class = "^(kitty)$" }, opacity = 0.95 })
+hl.window_rule({ match = { class = "^(Gui)$" }, opacity = 0.95 })
 -- hl.window_rule({ match = { class = "^(rofi)$" }, opacity = 0.1 })
 hl.window_rule({ match = { class = "^(waybar)$" }, opacity = 0.85 })
 hl.window_rule({ match = { class = "^(com.github.th_ch.youtube_music)$" }, opacity = 0.95 })
@@ -44,6 +45,21 @@ hl.layer_rule({ match = { namespace = "swaync-notification-window" }, ignore_alp
 hl.layer_rule({ match = { namespace = "waybar" }, ignore_alpha = 0.5 })
 hl.layer_rule({ match = { namespace = "selection" }, blur = false })
 hl.layer_rule({ match = { namespace = "discord" }, blur = true })
+
+-- rules for special windows
+hl.window_rule({ match = { class = "^(nmtui-floating)" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^(nmtui-floating)" }, center = true })
+hl.window_rule({ match = { class = "^(nmtui-floating)" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^(bluetui-floating)" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^(bluetui-floating)" }, center = true })
+hl.window_rule({ match = { class = "^(bluetui-floating)" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^(btop-floating)" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^(btop-floating)" }, center = true })
+hl.window_rule({ match = { class = "^(btop-floating)" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, fullscreen = true })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, no_blur = true })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, opacity = 1.0 })
+hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, animation = "false" })
 
 for i = 1, 5 do
 	hl.workspace_rule({ workspace = tostring(i), monitor = "HDMI-A-1" })

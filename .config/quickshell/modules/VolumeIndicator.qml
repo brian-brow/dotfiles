@@ -45,6 +45,8 @@ CircularProgress {
     onClicked: {
       Quickshell.execDetached(["wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle"])
     }
+    hoverEnabled: true
+    cursorShape: Qt.PointingHandCursor
 
   }
 }
