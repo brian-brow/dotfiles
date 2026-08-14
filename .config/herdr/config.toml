@@ -1,0 +1,49 @@
+# herdr config — ported from ~/.config/tmux/tmux.conf
+
+[keys]
+prefix = "ctrl+a"
+
+reload_config = "prefix+r"
+resize_mode = "alt+r"        # moved off its prefix+r default to free it for reload
+
+split_vertical = "alt+|"     # side by side
+split_horizontal = "alt+minus"  # stacked
+
+new_tab = "alt+c"
+switch_tab = "alt+1..9"
+close_pane = "alt+x"
+
+focus_pane_left = "alt+h"
+focus_pane_down = "alt+j"
+focus_pane_up = "alt+k"
+focus_pane_right = "alt+l"
+
+workspace_picker = "alt+w"
+
+next_workspace = "alt+tab"   # ctrl+tab does not register, do not switch back
+previous_workspace = "alt+shift+tab"
+
+# Navigate mode (prefix+g) only — separate from focus_pane_* above.
+# Swapped from herdr defaults: vim keys walk spaces, arrows walk panes.
+# h/l unbound: spaces are a vertical list. left/right arrows are reserved to panes.
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+navigate_pane_up = "up"
+navigate_pane_down = "down"
+
+# No directional resize action exists; resize_mode is the only built-in.
+# Untested alternative:
+# [[keys.command]]
+# key = "alt+left"
+# type = "shell"
+# command = "herdr pane resize --pane \"$HERDR_ACTIVE_PANE_ID\" --direction left --amount 0.02"
+
+[terminal]
+new_cwd = "follow"           # new panes/tabs inherit the current pane's cwd
+
+[ui]
+prompt_new_tab_name = false  # create tabs immediately, as tmux did
+mouse_capture = true
+pane_borders = true
+show_agent_labels_on_pane_borders = true
+tab_bar_position = "bottom"
