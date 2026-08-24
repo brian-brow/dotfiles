@@ -1,32 +1,32 @@
-@define-color background        #101418;
-@define-color surface           #101418;
-@define-color surface-bright    #36393e;
-@define-color surface-dim       #101418;
-@define-color surface-container #1d2024;
-@define-color surface-variant   #42474e;
+@define-color background        #181115;
+@define-color surface           #181115;
+@define-color surface-bright    #40373a;
+@define-color surface-dim       #181115;
+@define-color surface-container #251d21;
+@define-color surface-variant   #504349;
 
-@define-color foreground        #e1e2e8;
-@define-color text              #e1e2e8;
-@define-color text-muted        #c2c7cf;
+@define-color foreground        #eedfe3;
+@define-color text              #eedfe3;
+@define-color text-muted        #d4c2c8;
 
-@define-color primary           #9fcafc;
-@define-color on-primary        #003257;
-@define-color secondary         #bac8db;
-@define-color on-secondary      #253140;
-@define-color tertiary          #d6bee5;
-@define-color on-tertiary       #3a2948;
+@define-color primary           #fcb0d6;
+@define-color on-primary        #521d3c;
+@define-color secondary         #dfbdcc;
+@define-color on-secondary      #402a35;
+@define-color tertiary          #f3ba9b;
+@define-color on-tertiary       #4a2811;
 
-@define-color accent            #9fcafc;
-@define-color accent-hover      #bac8db;
-@define-color accent-soft       #174974;
-@define-color outline           #8c9199;
-@define-color outline-variant   #42474e;
+@define-color accent            #fcb0d6;
+@define-color accent-hover      #dfbdcc;
+@define-color accent-soft       #6c3453;
+@define-color outline           #9c8d92;
+@define-color outline-variant   #504349;
 
 @define-color urgent            #ffb4ab;
 @define-color on-urgent         #690005;
 
-@define-color success           #d6bee5;
-@define-color warning           #bac8db;
+@define-color success           #f3ba9b;
+@define-color warning           #dfbdcc;
 
 @define-color card-bg           alpha(@surface-container, 0.78);
 @define-color card-bg-strong    alpha(@surface-container, 0.92);

@@ -5,6 +5,7 @@ if status is-interactive
 
     fish_add_path $HOME/scripts
     fish_add_path $HOME/.local/bin
+    fish_add_path /opt/cuda/bin
 
     set -gx EDITOR nvim
     set -gx QT_STYLE_OVERRIDE kvantum

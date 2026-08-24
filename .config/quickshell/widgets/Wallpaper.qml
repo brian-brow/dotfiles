@@ -16,8 +16,8 @@ PanelWindow {
   visible: false
   focusable: true
 
-  width: 1000
-  height: 500
+  implicitWidth: 1000
+  implicitHeight: 500
   color: "transparent"
 
 
@@ -119,6 +119,9 @@ Rectangle {
     anchors.left: parent.left
     anchors.bottom: parent.bottom
     width: parent.width / 2
+    // PreserveAspectCrop scales the image past its bounds on purpose and
+    // relies on the parent to cut off the overflow.
+    clip: true
 
     Image {
       anchors.fill: parent
@@ -213,6 +216,9 @@ Rectangle {
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     width: parent.width / 2
+    // The Flow lays out a fixed 25 thumbnails and can run past the bottom
+    // edge; keep the spill inside the pane.
+    clip: true
 
     WheelHandler {
       target: null

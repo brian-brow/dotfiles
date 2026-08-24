@@ -8,8 +8,8 @@ import Quickshell.Hyprland
 
 PanelWindow {
   id: root
-  width: 620
-  height: 620
+  implicitWidth: 620
+  implicitHeight: 620
   color: "transparent"
 
   WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand

@@ -3,6 +3,7 @@
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
+import Quickshell.Hyprland
 import "."
 import "modules"
 import "widgets"
@@ -121,6 +122,27 @@ ShellRoot {
     }
   }
 
+  ClipboardManager {
+    id: clipboardManager
+    theme: systemTheme
+  }
+
+  IpcHandler {
+    target: "clipboard"
+
+    function open() {
+      clipboardManager.visible = true
+    }
+
+    function close() {
+      clipboardManager.visible = false
+    }
+
+    function toggle() {
+      clipboardManager.visible = !clipboardManager.visible
+    }
+  }
+
   Magic8Ball {
     id: magic8Ball
   }
@@ -141,6 +163,27 @@ ShellRoot {
       magic8Ball.dragging = true
     }
   }
+
+  // Calculator {
+  //   id: calculator
+  // }
+  //
+  // IpcHandler {
+  //   target: "calculator"
+  //
+  //   function open() {
+  //     calculator.visible = true
+  //   }
+  //
+  //   function close() {
+  //     calculator.visible = false
+  //   }
+  //
+  //   function toggle() {
+  //     calculator.visible = !calculator.visible
+  //     calculator.dragging = true
+  //   }
+  // }
 
   Battery {
     id: battery

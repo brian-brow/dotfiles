@@ -1,17 +1,16 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "source": "arch2",
+    "source": "arch_small",
     "color": {
-      "1": "#d0e4ff",
-      "2": "#9fcafc",
+      "1": "#ffd8e9",
+      "2": "#fcb0d6",
     },
     "padding": {
-      "top": 1,
-      "right": 1,
-      "left": 1,
-      "bottom": 3
-    }
+      "top": 4,
+      "right": 3,
+      "left": 3,
+    },
   },
   "display": {
     "separator": " ",
@@ -23,22 +22,22 @@
       "type": "title",
       "keyWidth": 10,
       "color": {
-        "user": "#9fcafc",
-        "at": "#e1e2e8",
-        "host": "#9fcafc"
+        "user": "#fcb0d6",
+        "at": "#eedfe3",
+        "host": "#fcb0d6"
       },
     },
     "break",
     {
       "type": "os",
       "key": " ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "host",
       "key": "🖥 ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
       "format": "my sick pc"
     },
@@ -46,44 +45,44 @@
       "type": "shell",
       "format": "{}",
       "key": ">_",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "terminal",
       "key": " ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "wm",
       "format": "{}",
       "key": " ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "cpu",
       "key": "󰍛 ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "gpu",
       "key": "󰢮 ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "memory",
       "key": "🎟 ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
     },
     {
       "type": "disk",
       "key": "󰋊 ",
-      "keyColor": "#9fcafc",
+      "keyColor": "#fcb0d6",
       "color": "cyan",
       "format": "{1} / {2} ({3})"
     },

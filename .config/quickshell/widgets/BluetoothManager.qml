@@ -18,8 +18,8 @@ PanelWindow {
   visible: false
   focusable: true
 
-  width: 420
-  height: 420
+  implicitWidth: 420
+  implicitHeight: 420
   color: "transparent"
 
   function refreshDevices() {

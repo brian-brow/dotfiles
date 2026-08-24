@@ -23,7 +23,9 @@ CircularProgress {
   lineWidth: 2
   progressColor: theme.primary
   trackColor: Qt.alpha(theme.primary, 0.25)
-  iconColor: theme.fg
+  iconColor: root.sink?.audio?.muted
+  ? theme.error
+  : theme.fg
 
   icon: root.sink?.audio?.muted
   ? "󰝟"

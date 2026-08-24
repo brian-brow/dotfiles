@@ -21,8 +21,8 @@ PanelWindow {
   visible: false
   focusable: true
 
-  width: 420
-  height: 360
+  implicitWidth: 420
+  implicitHeight: 360
   color: "transparent"
 
   function refreshNetworks() {

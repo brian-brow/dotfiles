@@ -2,4 +2,4 @@
 # VERSION: 3.0
 SETUVAR __fish_initialized:4300
 SETUVAR fish_greeting:
-SETUVAR fish_user_paths:/home/brian/\x2edotnet/tools\x1e/home/brian/\x2elocal/bin\x1e/home/brian/scripts
+SETUVAR fish_user_paths:/opt/cuda/bin\x1e/home/brian/\x2edotnet/tools\x1e/home/brian/\x2elocal/bin\x1e/home/brian/scripts
