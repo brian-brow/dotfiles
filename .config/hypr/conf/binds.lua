@@ -6,6 +6,7 @@ local terminal = "ghostty"
 local fileManager = "nemo"
 local menu = "rofi"
 local browser = "zen-browser"
+local toggleTui = "~/.config/hypr/scripts/toggle-tui.sh "
 
 -- App launchers
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
@@ -13,7 +14,7 @@ hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("vesktop"))
 hl.bind(mainMod .. " + T", hl.dsp.window.close())
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/scripts/application_launcher.sh"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(toggleTui .. "yazi"))
 -- hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("rofimoji"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-todo.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/wlogout.sh"))
@@ -21,11 +22,11 @@ hl.bind(mainMod .. " + R", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("steam"))
 -- hl.bind(mainMod .. " + W",   hl.dsp.exec_cmd("~/.config/hypr/scripts/wallpaper.sh"))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs ipc call wallpaper toggle"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-tui.sh bluetui"))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-tui.sh nmtui"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-tui.sh btop"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(toggleTui .. "bluetui"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(toggleTui .. "nmtui"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(toggleTui .. "btop"))
 --- hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("qs ipc call screenshot toggle"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("screenshot.sh"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("~/scripts/screenshot.sh"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("qs ipc call calculator toggle"))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("blue-bubbles.AppImage"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen(1))

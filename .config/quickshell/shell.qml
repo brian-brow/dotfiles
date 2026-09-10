@@ -18,24 +18,18 @@ ShellRoot {
     model: Quickshell.screens
     delegate: Bar {
       // Pass the screen and theme into each instance
-      screen: modelData 
       theme: systemTheme
-      onCavaHovered: hovered => settingsPopup.barHovered = hovered
+      onCavaHovered: hovered => {
+        settingsPopup.barHovered = hovered
+        if (hovered) settingsPopup.screen = modelData
+      }
     }
   }
-
-  // Variants {
-  //   model: Quickshell.screens
-  //   delegate: Dock {
-  //     screen: modelData
-  //     theme: systemTheme
-  //   }
-  // }
 
   SettingsPopup {
     id: settingsPopup
     theme: systemTheme
-    screen: Hyprland.focusedMonitor?.screen ?? Quickshell.screens[0]
+    screen: Quickshell.screens[0] 
   }
 
   Wallpaper {
@@ -58,27 +52,6 @@ ShellRoot {
       wallpaper.visible = !wallpaper.visible
     }
   }
-
-  // Screenshot {
-  //   id: screenshot
-  //   theme: systemTheme
-  // }
-
-  // IpcHandler {
-  //   target: "screenshot"
-
-  //   function open() {
-  //     screenshot.visible = true
-  //   }
-
-  //   function close() {
-  //     screenshot.visible = false
-  //   }
-
-  //   function toggle() {
-  //     screenshot.visible = !screenshot.visible
-  //   }
-  // }
 
   NetworkManager {
     id: networkManager
@@ -163,27 +136,6 @@ ShellRoot {
       magic8Ball.dragging = true
     }
   }
-
-  // Calculator {
-  //   id: calculator
-  // }
-  //
-  // IpcHandler {
-  //   target: "calculator"
-  //
-  //   function open() {
-  //     calculator.visible = true
-  //   }
-  //
-  //   function close() {
-  //     calculator.visible = false
-  //   }
-  //
-  //   function toggle() {
-  //     calculator.visible = !calculator.visible
-  //     calculator.dragging = true
-  //   }
-  // }
 
   Battery {
     id: battery

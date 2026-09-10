@@ -79,6 +79,13 @@ input_path = '~/.config/matugen/templates/tmux.conf'
 output_path = '~/.config/tmux/tmux.conf'
 post_hook = 'tmux source-file ~/.config/tmux/tmux.conf'
 
+[templates.herdr]
+input_path = '~/.config/matugen/templates/herdr.toml'
+output_path = '~/.config/herdr/config.toml'
+# Absolute path: matugen is launched from hypr/scripts/wallpaper.sh with a
+# minimal PATH that lacks ~/.local/bin, so a bare `herdr` silently fails.
+post_hook = '$HOME/.local/bin/herdr server reload-config || true'
+
 [templates.quickshell]
 input_path = '~/.config/matugen/templates/Theme.qml'
 output_path = '~/.config/quickshell/Theme.qml'

@@ -9,8 +9,8 @@ import "."
 
 PanelWindow {
   id: root
+  required property ShellScreen modelData
   required property QtObject theme
-  required property var modelData
 
   screen: modelData
   signal cavaHovered(bool hovered)
@@ -22,6 +22,12 @@ PanelWindow {
   implicitHeight: 33
 
   color: "transparent"
+
+  // Same tokens as rofi and the clipboard manager. The matugen rofi template
+  // stamps 7f onto every color except the text roles, and Theme.qml comes out
+  // of the same matugen run, so the alpha is applied at use instead of baked
+  // in. Hyprland blurs this: conf/rules.lua blurs the `quickshell` namespace.
+  readonly property real rofiAlpha: 0x7f / 255
 
   CavaSource {
     id: cavaSource
@@ -37,9 +43,9 @@ PanelWindow {
     anchors.rightMargin: 1
     height: 32
     radius: 10
-    color: Qt.rgba(theme.bg.r, theme.bg.g, theme.bg.b, 0.88)
+    color: Qt.alpha(root.theme.bg, 0.9)
     border.width: 1
-    border.color: Qt.rgba(theme.fg.r, theme.fg.g, theme.fg.b, 0.08)
+    border.color: Qt.alpha(root.theme.secondary_container, root.rofiAlpha)
 
     Item {
       anchors.fill: parent

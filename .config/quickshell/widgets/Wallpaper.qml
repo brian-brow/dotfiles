@@ -13,6 +13,8 @@ PanelWindow {
 
   required property QtObject theme
 
+  readonly property real rofiAlpha: 0x7f / 255
+
   visible: false
   focusable: true
 
@@ -101,9 +103,9 @@ Rectangle {
   id: win
   anchors.fill: parent
   radius: 14
-  color: root.theme.bg
+  color: Qt.alpha(root.theme.on_primary_fixed, root.rofiAlpha)
   border.width: 1
-  border.color: Qt.alpha(root.theme.fg, 0.12)
+  border.color: Qt.alpha(root.theme.secondary_container, root.rofiAlpha)
   layer.enabled: true
   layer.effect: MultiEffect {
     maskEnabled: true

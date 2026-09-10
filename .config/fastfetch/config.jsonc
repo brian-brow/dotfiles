@@ -3,8 +3,8 @@
   "logo": {
     "source": "arch_small",
     "color": {
-      "1": "#ffd8e9",
-      "2": "#fcb0d6",
+      "1": "#d5e3ff",
+      "2": "#a8c8ff",
     },
     "padding": {
       "top": 4,
@@ -22,22 +22,22 @@
       "type": "title",
       "keyWidth": 10,
       "color": {
-        "user": "#fcb0d6",
-        "at": "#eedfe3",
-        "host": "#fcb0d6"
+        "user": "#a8c8ff",
+        "at": "#e1e2e9",
+        "host": "#a8c8ff"
       },
     },
     "break",
     {
       "type": "os",
       "key": " ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "host",
       "key": "🖥 ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
       "format": "my sick pc"
     },
@@ -45,44 +45,44 @@
       "type": "shell",
       "format": "{}",
       "key": ">_",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "terminal",
       "key": " ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "wm",
       "format": "{}",
       "key": " ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "cpu",
       "key": "󰍛 ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "gpu",
       "key": "󰢮 ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "memory",
       "key": "🎟 ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
     },
     {
       "type": "disk",
       "key": "󰋊 ",
-      "keyColor": "#fcb0d6",
+      "keyColor": "#a8c8ff",
       "color": "cyan",
       "format": "{1} / {2} ({3})"
     },

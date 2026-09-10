@@ -28,7 +28,9 @@ Rectangle {
 
   implicitWidth: visibleBarCount * (barWidth + barSpacing) - barSpacing + padding * 2
 
-  color: root.containsMouse ? theme.surface_container : theme.surface_container_lowest
+  // A faint tint of the foreground rather than an opaque surface, so the chip
+  // reads as a slight lift in the bar and the blur behind still shows through.
+  color: root.containsMouse ? Qt.alpha(theme.fg, 0.12) : Qt.alpha(theme.inverse_primary, 0.3)
   Behavior on color { ColorAnimation { duration: 120 } }
 
   radius: 16

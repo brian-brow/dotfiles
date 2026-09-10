@@ -35,6 +35,7 @@ PanelWindow {
   readonly property int lines: 8            // listview lines
 
   readonly property int rowHeight: root.iconSize + root.elementPadding * 2
+  readonly property int listBoxPadding: 0
 
   implicitWidth: 500
   implicitHeight: root.windowPadding * 2
@@ -363,6 +364,14 @@ PanelWindow {
         Keys.onReturnPressed: root.activateSelected()
         Keys.onEnterPressed: root.activateSelected()
       }
+    }
+
+    Rectangle {
+      id: listBackground
+      anchors.fill: resultList
+      anchors.margins: -root.listBoxPadding
+      radius: 10
+      color: root.colInput
     }
 
     // rofi `listview` — transparent, sits directly on the window background
