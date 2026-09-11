@@ -1,14 +1,8 @@
 [general]
-mode = normal
+bars = 16
 framerate = 60
-sensitivity = 150
-autosens = 1
-bars = 40
-
-[smoothing]
-noise_reduction = 30
-monstercat = 0
-integral = 60
+sleep_timer = 5
+sensitivity = 50
 
 [output]
 method = raw
@@ -18,5 +12,5 @@ bar_delimiter = 59
 frame_delimiter = 10
 
 [input]
-method = pipewire
+method = pulse
 source = auto

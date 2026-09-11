@@ -1,32 +1,32 @@
-@define-color background        #101418;
-@define-color surface           #101418;
-@define-color surface-bright    #36393e;
-@define-color surface-dim       #101418;
+@define-color background        #111318;
+@define-color surface           #111318;
+@define-color surface-bright    #37393e;
+@define-color surface-dim       #111318;
 @define-color surface-container #1d2024;
-@define-color surface-variant   #42474e;
+@define-color surface-variant   #43474e;
 
-@define-color foreground        #e1e2e8;
-@define-color text              #e1e2e8;
-@define-color text-muted        #c2c7cf;
+@define-color foreground        #e1e2e9;
+@define-color text              #e1e2e9;
+@define-color text-muted        #c4c6cf;
 
-@define-color primary           #9fcafc;
-@define-color on-primary        #003257;
-@define-color secondary         #bac8db;
-@define-color on-secondary      #253140;
-@define-color tertiary          #d6bee5;
-@define-color on-tertiary       #3a2948;
+@define-color primary           #a8c8ff;
+@define-color on-primary        #05305f;
+@define-color secondary         #bdc7dc;
+@define-color on-secondary      #273141;
+@define-color tertiary          #dbbce1;
+@define-color on-tertiary       #3e2845;
 
-@define-color accent            #9fcafc;
-@define-color accent-hover      #bac8db;
-@define-color accent-soft       #174974;
-@define-color outline           #8c9199;
-@define-color outline-variant   #42474e;
+@define-color accent            #a8c8ff;
+@define-color accent-hover      #bdc7dc;
+@define-color accent-soft       #254777;
+@define-color outline           #8e9199;
+@define-color outline-variant   #43474e;
 
 @define-color urgent            #ffb4ab;
 @define-color on-urgent         #690005;
 
-@define-color success           #d6bee5;
-@define-color warning           #bac8db;
+@define-color success           #dbbce1;
+@define-color warning           #bdc7dc;
 
 @define-color card-bg           alpha(@surface-container, 0.78);
 @define-color card-bg-strong    alpha(@surface-container, 0.92);

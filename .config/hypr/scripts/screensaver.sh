@@ -2,6 +2,9 @@
 # === CONFIG ===
 CLASS="hypridle-screensaver"
 
+# nothing to screensave behind a lock screen
+pgrep -x hyprlock >/dev/null 2>&1 && exit 0
+
 # don't stack instances if already running
 pgrep -f "kitty --class $CLASS" >/dev/null 2>&1 && exit 0
 
