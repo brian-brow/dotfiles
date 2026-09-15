@@ -1,0 +1,119 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "frame": "#a8c8ff",
+    "fg": "#a8c8ff",
+    "bg": "#3d4758",
+    "dark": "#111318",
+    "muted": "#43474e",
+    "text": "#e1e2e9",
+    "error": "#ffb4ab"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:frame",
+          "template": "╭─"
+        },
+        {
+          "type": "session",
+          "style": "diamond",
+          "background": "p:bg",
+          "foreground": "p:fg",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " {{ .UserName }}"
+        },
+        {
+          "type": "path",
+          "style": "diamond",
+          "background": "p:bg",
+          "foreground": "p:fg",
+          "trailing_diamond": "",
+          "properties": {
+            "style": "powerlevel",
+            "max_width": 40
+          },
+          "template": " {{ .Path }} "
+        },
+        {
+          "type": "python",
+          "style": "diamond",
+          "background": "p:bg",
+          "foreground": "p:text",
+          "trailing_diamond": "",
+          "properties": {
+            "display_mode": "always",
+            "fetch_virtual_env": true,
+            "fetch_version": false
+          },
+          "template": "{{ if .Venv }} {{ end }}"
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "background": "p:fg",
+          "foreground": "p:bg",
+          "trailing_diamond": "",
+          "properties": {
+            "branch_icon": "",
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "fetch_upstream_icon": true
+          },
+          "template": "  {{ if .UpstreamIcon }}{{ .UpstreamIcon }} {{ end }}{{ if gt (len .HEAD) 18 }}{{ trunc 18 .HEAD }}…{{ else }}{{ .HEAD }}{{ end }}{{ if .Working.Changed }} *{{ end }}{{ if .Staging.Changed }} +{{ end }}{{ if gt .StashCount 0 }} {{ .StashCount }}{{ end }}{{ if gt .Ahead 0 }} ⇡{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} ⇣{{ .Behind }}{{ end }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:muted",
+          "properties": {
+            "threshold": 500,
+            "style": "austin"
+          },
+          "template": "  {{ .FormattedMs }}"
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "p:muted",
+          "properties": {
+            "time_format": "15:04"
+          },
+          "template": "  {{ .CurrentDate | date .Format }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:frame",
+          "template": "╰─▶</>"
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "template": "<p:muted>{{ .Folder }}</> <p:fg></><p:bg></> ",
+    "right_template": "<p:muted>{{ if .Segments.Executiontime }}  {{ .Segments.Executiontime.FormattedMs }}{{ end }}  {{ .Segments.Time.CurrentDate | date .Segments.Time.Format }} </>"
+  },
+  "final_space": true,
+  "version": 7
+}
