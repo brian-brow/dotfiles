@@ -21,13 +21,13 @@
 
     @define-color on_error_container #ffdad6;
 
-    @define-color on_primary #05305f;
+    @define-color on_primary #03305f;
 
     @define-color on_primary_container #d5e3ff;
 
-    @define-color on_primary_fixed #001b3c;
+    @define-color on_primary_fixed #001b3b;
 
-    @define-color on_primary_fixed_variant #254777;
+    @define-color on_primary_fixed_variant #244777;
 
     @define-color on_secondary #273141;
 
@@ -45,21 +45,21 @@
 
     @define-color on_tertiary_container #f8d8fe;
 
-    @define-color on_tertiary_fixed #28132f;
+    @define-color on_tertiary_fixed #27132f;
 
-    @define-color on_tertiary_fixed_variant #563e5d;
+    @define-color on_tertiary_fixed_variant #553e5d;
 
     @define-color outline #8e9199;
 
     @define-color outline_variant #43474e;
 
-    @define-color primary #a8c8ff;
+    @define-color primary #a7c8ff;
 
-    @define-color primary_container #254777;
+    @define-color primary_container #244777;
 
     @define-color primary_fixed #d5e3ff;
 
-    @define-color primary_fixed_dim #a8c8ff;
+    @define-color primary_fixed_dim #a7c8ff;
 
     @define-color scrim #000000;
 
@@ -73,7 +73,7 @@
 
     @define-color shadow #000000;
 
-    @define-color source_color #1b3d6a;
+    @define-color source_color #40587d;
 
     @define-color surface #111318;
 
@@ -83,7 +83,7 @@
 
     @define-color surface_container_high #282a2f;
 
-    @define-color surface_container_highest #33353a;
+    @define-color surface_container_highest #32353a;
 
     @define-color surface_container_low #191c20;
 
@@ -91,15 +91,15 @@
 
     @define-color surface_dim #111318;
 
-    @define-color surface_tint #a8c8ff;
+    @define-color surface_tint #a7c8ff;
 
     @define-color surface_variant #43474e;
 
-    @define-color tertiary #dbbce1;
+    @define-color tertiary #dbbde2;
 
-    @define-color tertiary_container #563e5d;
+    @define-color tertiary_container #553e5d;
 
     @define-color tertiary_fixed #f8d8fe;
 
-    @define-color tertiary_fixed_dim #dbbce1;
+    @define-color tertiary_fixed_dim #dbbde2;
 

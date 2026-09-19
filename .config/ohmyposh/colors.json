@@ -1,16 +1,11 @@
 {
-    "Created": "Phunt_Vieg_",
-    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-		"palette": {
-    	"white":    "#e1e2e9",
-    	"black":    "#111318",
-    	"blue":     "#a8c8ff",
-    	"lavender": "#bdc7dc",
-    	"cyan":     "#a8c8ff",
-    	"green":    "#3d4758",
-    	"purple":   "#43474e",
-   		"red":      "#ffb4ab",
-    	"pink":     "#3d4758",
-    	"yellow":   "#3e5f90",
-    	"orange":   "#93000a"
-    },
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "frame": "#a7c8ff",
+    "fg": "#a7c8ff",
+    "bg": "#1d2024",
+    "dark": "#111318",
+    "muted": "#43474e",
+    "text": "#e1e2e9",
+    "error": "#ffb4ab"
+  },

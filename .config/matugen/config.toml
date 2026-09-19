@@ -20,11 +20,6 @@ output_path = '~/.config/wlogout/colors.css'
 # input_path = '~/.config/matugen/templates/colors.css'
 # output_path = '~/.config/YouTube Music/colors.css'
 
-[templates.kitty]
-input_path = '~/.config/matugen/templates/kitty-colors.conf'
-output_path = '~/.config/kitty/colors.conf'
-post_hook = "pkill -SIGUSR1 kitty"
-
 [templates.ghostty]
 input_path = '~/.config/matugen/templates/ghostty.conf'
 output_path = '~/.config/ghostty/colors'
@@ -67,7 +62,7 @@ output_path = '~/.config/vesktop/themes/matugen.css'
 [templates.ohmyposh]
 input_path  = '~/.config/matugen/templates/ohmyposh-safe.json'
 output_path = '~/.config/ohmyposh/colors.json'
-post_hook = '~/.config/hypr/scripts/ohmyposh.sh; pkill -USR1 fish'
+post_hook = '~/.config/hypr/scripts/ohmyposh.sh; pkill -USR1 -x zsh'
 
 # [templates.todo]
 # input_path = '~/.config/matugen/templates/todo.css'
@@ -98,7 +93,6 @@ post_hook = 'pkill swaync; swaync &'
 [templates.nvim_pallette]
 input_path = "~/.config/matugen/templates/palette.lua"
 output_path = "~/.config/nvim/lua/matugen-nvim/lua/matugen/palette.lua"
-post_hook = "~/scripts/nvim-reload.sh"
 
 [templates.gtk]
 input_path = '~/.config/matugen/templates/gtk.css'

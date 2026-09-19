@@ -9,23 +9,23 @@
 @define-color text              #e1e2e9;
 @define-color text-muted        #c4c6cf;
 
-@define-color primary           #a8c8ff;
-@define-color on-primary        #05305f;
+@define-color primary           #a7c8ff;
+@define-color on-primary        #03305f;
 @define-color secondary         #bdc7dc;
 @define-color on-secondary      #273141;
-@define-color tertiary          #dbbce1;
+@define-color tertiary          #dbbde2;
 @define-color on-tertiary       #3e2845;
 
-@define-color accent            #a8c8ff;
+@define-color accent            #a7c8ff;
 @define-color accent-hover      #bdc7dc;
-@define-color accent-soft       #254777;
+@define-color accent-soft       #244777;
 @define-color outline           #8e9199;
 @define-color outline-variant   #43474e;
 
 @define-color urgent            #ffb4ab;
 @define-color on-urgent         #690005;
 
-@define-color success           #dbbce1;
+@define-color success           #dbbde2;
 @define-color warning           #bdc7dc;
 
 @define-color card-bg           alpha(@surface-container, 0.78);

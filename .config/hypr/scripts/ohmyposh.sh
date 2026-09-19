@@ -24,8 +24,3 @@ cat "$SAFE_FILE" "$UNSAFE_FILE" >"$OUTPUT_FILE"
 cat "$OUTPUT_FILE"
 
 echo "Generated Oh My Posh theme at $OUTPUT_FILE"
-
-# Optional: reload shell prompt (Bash example)
-if command -v oh-my-posh >/dev/null 2>&1; then
-  eval "$(oh-my-posh init bash --config $OUTPUT_FILE)"
-fi

@@ -1,79 +1,108 @@
-    "blocks": [
-      {
-        "type": "prompt",
-        "alignment": "left",
-        "newline": true,
-        "segments": [
-          {
-            "foreground": "p:cyan",
-            "style": "plain",
-            "template": "\u256d\u2500",
-            "type": "text"
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:frame",
+          "template": "╭─"
+        },
+        {
+          "type": "session",
+          "style": "diamond",
+          "background": "p:bg",
+          "foreground": "p:fg",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": " {{ .UserName }}"
+        },
+        {
+          "type": "path",
+          "style": "diamond",
+          "background": "p:bg",
+          "foreground": "p:fg",
+          "trailing_diamond": "",
+          "properties": {
+            "style": "powerlevel",
+            "max_width": 40
           },
-          {
-            "background": "p:green",
-            "foreground": "p:cyan",
-            "leading_diamond": "\ue0b6",
-            "style": "diamond",
-            "template": " {{ .UserName }}",
-            "trailing_diamond": "\ue0b0",
-            "type": "session"
+          "template": " {{ .Path }} "
+        },
+        {
+          "type": "python",
+          "style": "diamond",
+          "background": "p:bg",
+          "foreground": "p:text",
+          "trailing_diamond": "",
+          "properties": {
+            "display_mode": "always",
+            "fetch_virtual_env": true,
+            "fetch_version": false
           },
-          {
-            "background": "p:green",
-            "foreground": "p:cyan",
-            "properties": {
-              "style": "full"
-            },
-            "style": "diamond",
-            "template": " \uf114  {{ .Path }} ",
-            "trailing_diamond": "\ue0b0",
-            "type": "path"
+          "template": "{{ if .Venv }} {{ end }}"
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "background": "p:fg",
+          "foreground": "p:bg",
+          "trailing_diamond": "",
+          "properties": {
+            "branch_icon": "",
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "fetch_upstream_icon": true
           },
-          {
-            "background": "p:cyan",
-            "foreground": "p:green",
-            "properties": {
-              "branch_icon": "",
-              "fetch_stash_count": true,
-              "fetch_status": false,
-              "fetch_upstream_icon": true
-            },
-            "style": "diamond",
-            "template": " \ue725({{ .UpstreamIcon }} {{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}) ",
-            "trailing_diamond": "\ue0b0",
-            "type": "git"
-          },
-          {
-            "background": "p:black",
-            "foreground": "p:cyan",
-            "properties": {
-              "time_format": "15:04"
-            },
-            "style": "diamond",
-            "template": "{{ if ne (.Segments.Contains \"Git\") true }} {{ .CurrentDate | date .Format }} {{ end }}",
-            "trailing_diamond": "\ue0b0",
-            "type": "time"
-          }
-        ]
-      },
-      {
-        "type": "prompt",
-        "alignment": "left",
-        "newline": true,
-        "segments": [
-          {
-            "foreground": "p:cyan",
-            "style": "plain",
-            "template": "\u2570\u2500\u25B6</>",
-            "type": "text"
-          }
-        ]
-      }
-    ],
-    "transient_prompt": {
-      "template": "<p:blue>\uf0da</><p:pink>\uf105</> "
+          "template": "  {{ if .UpstreamIcon }}{{ .UpstreamIcon }} {{ end }}{{ if gt (len .HEAD) 18 }}{{ trunc 18 .HEAD }}…{{ else }}{{ .HEAD }}{{ end }}{{ if .Working.Changed }} *{{ end }}{{ if .Staging.Changed }} +{{ end }}{{ if gt .StashCount 0 }} {{ .StashCount }}{{ end }}{{ if gt .Ahead 0 }} ⇡{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} ⇣{{ .Behind }}{{ end }} "
+        }
+      ]
     },
-    "final_space": true,
-    "version": 7
-  }
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:muted",
+          "properties": {
+            "threshold": 500,
+            "style": "austin"
+          },
+          "template": "  {{ .FormattedMs }}"
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "p:muted",
+          "properties": {
+            "time_format": "15:04"
+          },
+          "template": "  {{ .CurrentDate | date .Format }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:frame",
+          "template": "╰─▶</>"
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "template": "<p:muted>{{ .Folder }}</> <p:fg></><p:bg></> ",
+    "right_template": "<p:muted>{{ if .Segments.Executiontime }}  {{ .Segments.Executiontime.FormattedMs }}{{ end }}  {{ .Segments.Time.CurrentDate | date .Segments.Time.Format }} </>"
+  },
+  "final_space": true,
+  "version": 7
+}

@@ -1,11 +1,11 @@
 * {
-    primary: #a8c8ff7f;
+    primary: #a7c8ff7f;
     primary-fixed: #d5e3ff7f;
-    primary-fixed-dim: #a8c8ff7f;
-    on-primary: #05305f7f;
-    on-primary-fixed: #001b3c7f;
-    on-primary-fixed-variant: #2547777f;
-    primary-container: #2547777f;
+    primary-fixed-dim: #a7c8ff7f;
+    on-primary: #03305f7f;
+    on-primary-fixed: #001b3b7f;
+    on-primary-fixed-variant: #2447777f;
+    primary-container: #2447777f;
     on-primary-container: #d5e3ff7f;
     secondary: #bdc7dc7f;
     secondary-fixed: #d9e3f87f;
@@ -15,13 +15,13 @@
     on-secondary-fixed-variant: #3d47587f;
     secondary-container: #3d47587f;
     on-secondary-container: #d9e3f87f;
-    tertiary: #dbbce17f;
+    tertiary: #dbbde27f;
     tertiary-fixed: #f8d8fe7f;
-    tertiary-fixed-dim: #dbbce17f;
+    tertiary-fixed-dim: #dbbde27f;
     on-tertiary: #3e28457f;
-    on-tertiary-fixed: #28132f7f;
-    on-tertiary-fixed-variant: #563e5d7f;
-    tertiary-container: #563e5d7f;
+    on-tertiary-fixed: #27132f7f;
+    on-tertiary-fixed-variant: #553e5d7f;
+    tertiary-container: #553e5d7f;
     on-tertiary-container: #f8d8fe7f;
     error: #ffb4ab7f;
     on-error: #6900057f;
@@ -43,5 +43,5 @@
     surface-container-low: #191c207f;
     surface-container: #1d20247f;
     surface-container-high: #282a2f7f;
-    surface-container-highest: #33353a7f;
+    surface-container-highest: #32353a7f;
 }
