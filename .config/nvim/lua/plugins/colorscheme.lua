@@ -11,10 +11,10 @@ return {
         opts = {
             style = "cool",
         },
-        config = function(_, opts)
-            require("onedark").setup(opts)
-            require("onedark").load()
-        end,
+        -- config = function(_, opts)
+        --     require("onedark").setup(opts)
+        --     require("onedark").load()
+        -- end,
     },
     {
         "ellisonleao/gruvbox.nvim",
@@ -22,9 +22,16 @@ return {
         opts = {},
     },
     {
+        "ReallySnazzy/osaka-jade-nvim",
+        lazy = false,
+        init = function()
+            -- vim.cmd.colorscheme("osaka-jade")
+        end,
+    },
+    {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "kanagawa",
+            colorscheme = "osaka-jade",
         },
     },
 }

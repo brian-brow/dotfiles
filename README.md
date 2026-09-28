@@ -2,7 +2,7 @@
 
 ![Desktop](screenshots/desktop.png)
 
-Personal Arch Linux dotfiles for a Hyprland-based desktop environment.
+Personal Arch and Ubuntu dotfiles for a Hyprland-based desktop environment.
 Managed with two scripts that sync configs between the live system and this repo.
 The setup is built around **matugen**, a material design color generator that
 derives a full color palette from the current wallpaper. Every component
@@ -38,8 +38,18 @@ wallpaper changes.
 
 ### Fresh install
 
-Clone the repo and run the apply script. On a new system it will offer to
-install all packages first:
+Install Bash, Git, and rsync before you run the sync scripts.
+The scripts do not install packages.
+Clone the repo and select the branch for your machine in lazygit before you run
+the apply script:
+
+| Machine | Branch |
+|---------|--------|
+| Arch desktop | `desktop` |
+| Arch laptop | `arch-laptop` |
+| Ubuntu laptop | `ubuntu-desktop` |
+
+Create the `arch-laptop` branch before you use these scripts on the Arch laptop.
 
 ```bash
 git clone https://github.com/brian-brow/dotfiles.git ~/dotfiles
@@ -48,14 +58,17 @@ chmod +x sync_from_repo.sh
 ./sync_from_repo.sh
 ```
 
-The script will:
-1. Detect a new system and offer to install all packages via pacman + yay
-2. Ask whether this is the `desktop` or `laptop` branch
-3. Pull the latest configs and apply them to the system
+The script asks which machine this is and stops if its branch does not match.
+It can pull the latest files before it shows the proposed file changes and deletions.
+Confirm the preview to apply the files.
+
+Both scripts use `sync_files.sh` for the paths to sync. Each branch can keep its own list.
 
 ### Saving changes
 
-After editing configs on your system, run from inside the repo:
+After you edit files on your system, run the save script from inside the repo.
+It shows the proposed file changes and deletions before it copies files.
+It does not stage, commit, or push changes.
 
 ```bash
 cd ~/dotfiles

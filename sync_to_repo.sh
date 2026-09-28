@@ -9,82 +9,46 @@ CONFIG="$HOME/.dotfiles-config"
 
 if [ ! -f "$CONFIG" ]; then
   echo "No dotfiles config found. Which setup is this machine?"
-  echo "  1) desktop"
-  echo "  2) laptop"
-  read -rp "Choice [1/2]: " choice
+  echo "  1) Arch desktop (desktop branch)"
+  echo "  2) Arch laptop (arch-laptop branch)"
+  echo "  3) Ubuntu laptop (ubuntu-desktop branch)"
+  read -rp "Choice [1/2/3]: " choice
   case "$choice" in
   1) BRANCH="desktop" ;;
-  2) BRANCH="laptop" ;;
+  2) BRANCH="arch-laptop" ;;
+  3) BRANCH="ubuntu-desktop" ;;
   *)
-    echo "Invalid choice, defaulting to desktop"
-    BRANCH="desktop"
+    echo "Invalid choice" >&2
+    exit 1
     ;;
   esac
-  echo "DOTFILES_BRANCH=\"$BRANCH\"" >"$CONFIG"
-  echo "Saved to $CONFIG"
-  echo
 else
   source "$CONFIG"
-  BRANCH="$DOTFILES_BRANCH"
+  BRANCH="${DOTFILES_BRANCH:-}"
 fi
+
+case "$BRANCH" in
+desktop|arch-laptop|ubuntu-desktop) ;;
+*) echo "Unknown branch in $CONFIG: $BRANCH" >&2; exit 1 ;;
+esac
 
 current="$(git -C "$REPO_DIR" branch --show-current)"
 if [ "$current" != "$BRANCH" ]; then
-  echo "Switching branch: $current → $BRANCH"
-  git -C "$REPO_DIR" checkout "$BRANCH"
-  echo
+  echo "This machine uses $BRANCH, but the checked-out branch is ${current:-detached}. Select $BRANCH in lazygit first." >&2
+  exit 1
 fi
 
-# ─── Tracked files ────────────────────────────────────────────────────────────
-FILES=(
-  # WM / display
-  .config/hypr
-  .config/wlogout
-  .config/swaync
+if [ ! -f "$CONFIG" ]; then
+  echo "DOTFILES_BRANCH=\"$BRANCH\"" >"$CONFIG"
+  echo "Saved to $CONFIG"
+fi
 
-  # Terminal / shell
-  .config/kitty
-  .config/fastfetch
-  .config/fish
-
-  # Editor
-  .config/nvim
-
-  # Bar / widgets
-  .config/quickshell
-  .config/rofi
-
-  # Theming
-  .config/gtk-3.0
-  .config/gtk-4.0
-  .config/Kvantum
-  .config/fontconfig
-  .config/nwg-look
-  .config/matugen
-
-  # Apps
-  .config/cava
-  .config/lazygit
-  .config/htop
-  .config/pacseek
-  .config/ohmyposh
-  .config/tmux
-  .config/yay
-
-  # Single files
-  .bashrc
-  .gitconfig
-  .config/libinput-gestures.conf
-  .config/user-dirs.dirs
-
-  # Wallpapers
-  Wallpapers
-)
+source "$REPO_DIR/sync_files.sh"
 
 COPIED=0
 SKIPPED=0
 
-echo "Syncing live configs → repo ($BRANCH)..."
+echo "Previewing live configs → repo ($BRANCH)..."
 echo
 
 for rel in "${FILES[@]}"; do
@@ -97,38 +61,38 @@ for rel in "${FILES[@]}"; do
     continue
   fi
 
+  echo "  $rel"
+  if [ -d "$src" ]; then
+    rsync -ani --delete "$src/" "$dst/"
+  else
+    rsync -ani "$src" "$dst"
+  fi
+done
+
+echo
+read -rp "Apply these changes, including deletions? [y/N] " answer
+if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+  echo "No changes applied."
+  exit 0
+fi
+
+for rel in "${FILES[@]}"; do
+  src="$HOME/$rel"
+  dst="$REPO_DIR/$rel"
+
+  if [ ! -e "$src" ]; then
+    continue
+  fi
+
   mkdir -p "$(dirname "$dst")"
 
   if [ -d "$src" ]; then
-    echo "  DIR   $rel"
-    diff -rq "$src/" "$dst/" 2>&1 | sed 's/^/    /' || true
     rsync -a --delete "$src/" "$dst/"
   else
-    echo "  FILE  $rel"
-    diff -rq "$src" "$dst" 2>&1 | sed 's/^/    /' || true
-    cp -p "$src" "$dst"
+    rsync -a "$src" "$dst"
   fi
   ((COPIED++)) || true
 done
 
 echo
 echo "Done. Copied: $COPIED  Skipped: $SKIPPED"
-echo
-
-# ── Optional: commit and push ─────────────────────────────────────────────────
-cd "$REPO_DIR"
-if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
-  read -rp "Commit and push changes? [y/N] " answer
-  if [[ "$answer" =~ ^[Yy]$ ]]; then
-    git add -A
-    default_msg="dotfiles: sync $(date '+%Y-%m-%d %H:%M')"
-    read -rp "Commit message [$default_msg]: " msg
-    git commit -m "${msg:-$default_msg}"
-    git push
-    echo "Pushed."
-  else
-    echo "Changes staged in repo but not committed."
-  fi
-else
-  echo "No changes detected in repo."
-fi

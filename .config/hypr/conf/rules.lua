@@ -23,9 +23,9 @@ hl.window_rule({ match = { tag = "multimedia_video*" }, opacity = 1.0 })
 
 -- Per-app opacity
 hl.window_rule({ match = { class = "^(kitty)$" }, opacity = 0.95 })
+hl.window_rule({ match = { class = "^(com.mitchellh.ghostty)$" }, opacity = 0.95 })
 -- hl.window_rule({ match = { class = "^(rofi)$" }, opacity = 0.1 })
 -- hl.window_rule({ match = { class = "^(waybar)$" }, opacity = 0.85 })
--- hl.window_rule({ match = { class = "^(com.github.th_ch.youtube_music)$" }, opacity = 0.95 })
 -- hl.window_rule({ match = { class = "^(vesktop)$" }, opacity = 0.95 })
 hl.window_rule({ match = { class = "^(firefox)$" }, opacity = 0.95 })
 hl.window_rule({ match = { class = "^(org.qutebrowser.qutebrowser)$" }, opacity = 0.95 })
@@ -46,15 +46,18 @@ hl.layer_rule({ match = { namespace = "selection" }, blur = false })
 -- hl.layer_rule({ match = { namespace = "discord" }, blur = true })
 
 -- rules for special windows
-hl.window_rule({ match = { class = "^(nmtui-floating)" }, float = true, size = { 1200, 800 } })
-hl.window_rule({ match = { class = "^(nmtui-floating)" }, center = true })
-hl.window_rule({ match = { class = "^(nmtui-floating)" }, move = "%50 0 " })
-hl.window_rule({ match = { class = "^(bluetui-floating)" }, float = true, size = { 1200, 800 } })
-hl.window_rule({ match = { class = "^(bluetui-floating)" }, center = true })
-hl.window_rule({ match = { class = "^(bluetui-floating)" }, move = "%50 0 " })
-hl.window_rule({ match = { class = "^(btop-floating)" }, float = true, size = { 1200, 800 } })
-hl.window_rule({ match = { class = "^(btop-floating)" }, center = true })
-hl.window_rule({ match = { class = "^(btop-floating)" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^com.brian.nmtui.floating$" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^com.brian.nmtui.floating$" }, center = true })
+hl.window_rule({ match = { class = "^com.brian.nmtui.floating$" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^com.brian.bluetui.floating$" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^com.brian.bluetui.floating$" }, center = true })
+hl.window_rule({ match = { class = "^com.brian.bluetui.floating$" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^com.brian.btop.floating$" }, float = true, size = { 1200, 800 } })
+hl.window_rule({ match = { class = "^com.brian.btop.floating$" }, center = true })
+hl.window_rule({ match = { class = "^com.brian.btop.floating$" }, move = "%50 0 " })
+hl.window_rule({ match = { class = "^com.brian.yazi.floating$" }, float = true, size = { 1600, 1000 } })
+hl.window_rule({ match = { class = "^com.brian.yazi.floating$" }, center = true })
+hl.window_rule({ match = { class = "^com.brian.yazi.floating$" }, move = "%50 0 " })
 hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, fullscreen = true })
 hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, no_blur = true })
 hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, opacity = 1.0 })
@@ -64,9 +67,9 @@ hl.window_rule({ match = { class = "^(hypridle-screensaver)$" }, animation = "fa
 for i = 1, 5 do
 	hl.workspace_rule({ workspace = tostring(i), monitor = "eDP-1" })
 end
-for i = 6, 10 do
-	hl.workspace_rule({ workspace = tostring(i), monitor = "desc:Dell Inc. DELL U2724DE HXWBGJ4" })
-end
-for i = 11, 15 do
-	hl.workspace_rule({ workspace = tostring(i), monitor = "desc:Dell Inc. DELL U2724DE BCSBGJ4" })
-end
+-- for i = 6, 10 do
+-- 	hl.workspace_rule({ workspace = tostring(i), monitor = "desc:Dell Inc. DELL U2724DE HXWBGJ4" })
+-- end
+-- for i = 11, 15 do
+-- 	hl.workspace_rule({ workspace = tostring(i), monitor = "desc:Dell Inc. DELL U2724DE BCSBGJ4" })
+-- end

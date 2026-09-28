@@ -1,9 +1,10 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "source": "ubuntu_small",
+    "source": "arch_small",
     "color": {
-      "1": "blue",
+      "1": "#a0f2de",
+      "2": "#84d6c2",
     },
     "padding": {
       "top": 4,
@@ -20,19 +21,23 @@
     {
       "type": "title",
       "keyWidth": 10,
-      "color": "blue",
+      "color": {
+        "user": "#84d6c2",
+        "at": "#dee4e0",
+        "host": "#84d6c2"
+      },
     },
     "break",
     {
       "type": "os",
       "key": " ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "host",
       "key": "🖥 ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
       "format": "my sick pc"
     },
@@ -40,44 +45,44 @@
       "type": "shell",
       "format": "{}",
       "key": ">_",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "terminal",
       "key": " ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "wm",
       "format": "{}",
       "key": " ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "cpu",
       "key": "󰍛 ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "gpu",
       "key": "󰢮 ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "memory",
       "key": "🎟 ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
     },
     {
       "type": "disk",
       "key": "󰋊 ",
-      "keyColor": "blue",
+      "keyColor": "#84d6c2",
       "color": "cyan",
       "format": "{1} / {2} ({3})"
     },
@@ -93,6 +98,8 @@
       },
       "brightness": true
     },
+    "break",
+    "break",
     "break",
     "break",
   ],

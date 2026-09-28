@@ -4,74 +4,74 @@ QtObject {
 
     /* Matugen Palette */
 
-    property color background: "#111318"
+    property color background: "#0e1513"
 
     property color error: "#ffb4ab"
     property color error_container: "#93000a"
 
-    property color inverse_on_surface: "#2e3035"
-    property color inverse_primary: "#3e5f90"
-    property color inverse_surface: "#e1e2e9"
+    property color inverse_on_surface: "#2b3230"
+    property color inverse_primary: "#066b5b"
+    property color inverse_surface: "#dee4e0"
 
-    property color on_background: "#e1e2e9"
+    property color on_background: "#dee4e0"
 
     property color on_error: "#690005"
     property color on_error_container: "#ffdad6"
 
-    property color on_primary: "#05305f"
-    property color on_primary_container: "#d5e3ff"
-    property color on_primary_fixed: "#001b3c"
-    property color on_primary_fixed_variant: "#254777"
+    property color on_primary: "#00382e"
+    property color on_primary_container: "#a0f2de"
+    property color on_primary_fixed: "#00201a"
+    property color on_primary_fixed_variant: "#005144"
 
-    property color on_secondary: "#273141"
-    property color on_secondary_container: "#d9e3f8"
-    property color on_secondary_fixed: "#121c2b"
-    property color on_secondary_fixed_variant: "#3d4758"
+    property color on_secondary: "#1d352f"
+    property color on_secondary_container: "#cde8e0"
+    property color on_secondary_fixed: "#06201a"
+    property color on_secondary_fixed_variant: "#334b45"
 
-    property color on_surface: "#e1e2e9"
-    property color on_surface_variant: "#c4c6cf"
+    property color on_surface: "#dee4e0"
+    property color on_surface_variant: "#bfc9c4"
 
-    property color on_tertiary: "#3e2845"
-    property color on_tertiary_container: "#f8d8fe"
-    property color on_tertiary_fixed: "#28132f"
-    property color on_tertiary_fixed_variant: "#563e5d"
+    property color on_tertiary: "#113348"
+    property color on_tertiary_container: "#c8e6ff"
+    property color on_tertiary_fixed: "#001e2e"
+    property color on_tertiary_fixed_variant: "#2a4a5f"
 
-    property color outline: "#8e9199"
-    property color outline_variant: "#43474e"
+    property color outline: "#89938f"
+    property color outline_variant: "#3f4946"
 
-    property color primary: "#a8c8ff"
-    property color primary_container: "#254777"
-    property color primary_fixed: "#d5e3ff"
-    property color primary_fixed_dim: "#a8c8ff"
+    property color primary: "#84d6c2"
+    property color primary_container: "#005144"
+    property color primary_fixed: "#a0f2de"
+    property color primary_fixed_dim: "#84d6c2"
 
     property color scrim: "#000000"
 
-    property color secondary: "#bdc7dc"
-    property color secondary_container: "#3d4758"
-    property color secondary_fixed: "#d9e3f8"
-    property color secondary_fixed_dim: "#bdc7dc"
+    property color secondary: "#b1ccc4"
+    property color secondary_container: "#334b45"
+    property color secondary_fixed: "#cde8e0"
+    property color secondary_fixed_dim: "#b1ccc4"
 
     property color shadow: "#000000"
 
-    property color source_color: "#1b3d6a"
+    property color source_color: "#047b69"
 
-    property color surface: "#111318"
-    property color surface_bright: "#37393e"
-    property color surface_container: "#1d2024"
-    property color surface_container_high: "#282a2f"
-    property color surface_container_highest: "#33353a"
-    property color surface_container_low: "#191c20"
-    property color surface_container_lowest: "#0c0e13"
-    property color surface_dim: "#111318"
+    property color surface: "#0e1513"
+    property color surface_bright: "#343b38"
+    property color surface_container: "#1b211f"
+    property color surface_container_high: "#252b29"
+    property color surface_container_highest: "#303634"
+    property color surface_container_low: "#171d1b"
+    property color surface_container_lowest: "#090f0e"
+    property color surface_dim: "#0e1513"
 
-    property color surface_tint: "#a8c8ff"
+    property color surface_tint: "#84d6c2"
 
-    property color surface_variant: "#43474e"
+    property color surface_variant: "#3f4946"
 
-    property color tertiary: "#dbbce1"
-    property color tertiary_container: "#563e5d"
-    property color tertiary_fixed: "#f8d8fe"
-    property color tertiary_fixed_dim: "#dbbce1"
+    property color tertiary: "#aacbe4"
+    property color tertiary_container: "#2a4a5f"
+    property color tertiary_fixed: "#c8e6ff"
+    property color tertiary_fixed_dim: "#aacbe4"
 
 
     /* UI Settings */
