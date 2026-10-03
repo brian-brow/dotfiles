@@ -6,6 +6,7 @@ FILES=(
 
   # Terminal / shell
   .config/kitty
+  .config/ghostty
   .config/fastfetch
   .config/fish
 
@@ -28,6 +29,7 @@ FILES=(
   .config/cava
   .config/lazygit
   .config/htop
+  .config/btop
   .config/pacseek
   .config/ohmyposh
   .config/tmux
@@ -40,6 +42,11 @@ FILES=(
   .config/starship.toml
   .config/libinput-gestures.conf
   .config/user-dirs.dirs
+  .config/opencode/opencode.json
+  .config/opencode/cli.json
+  .config/opencode/AGENTS.md
+  Scripts/h
+  Scripts/hc
 
   # Wallpapers
   Wallpapers

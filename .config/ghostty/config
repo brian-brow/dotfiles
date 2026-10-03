@@ -1,0 +1,4 @@
+# Main Ghostty configuration
+font-family = JetBrainsMono NF
+config-file = colors.conf
+mouse-scroll-multiplier = 0.5

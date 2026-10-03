@@ -63,9 +63,9 @@ for rel in "${FILES[@]}"; do
 
   echo "  $rel"
   if [ -d "$src" ]; then
-    rsync -ani --delete "$src/" "$dst/"
+    rsync -ani --mkpath --delete "$src/" "$dst/"
   else
-    rsync -ani "$src" "$dst"
+    rsync -ani --mkpath "$src" "$dst"
   fi
 done
 
@@ -84,12 +84,10 @@ for rel in "${FILES[@]}"; do
     continue
   fi
 
-  mkdir -p "$(dirname "$dst")"
-
   if [ -d "$src" ]; then
-    rsync -a --delete "$src/" "$dst/"
+    rsync -a --mkpath --delete "$src/" "$dst/"
   else
-    rsync -a "$src" "$dst"
+    rsync -a --mkpath "$src" "$dst"
   fi
   ((COPIED++)) || true
 done

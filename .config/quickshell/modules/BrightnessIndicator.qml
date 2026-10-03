@@ -45,9 +45,12 @@ Item {
   MouseArea {
     anchors.fill: parent
     onWheel: wheel => {
-      const delta = wheel.angleDelta.y > 0 ? 0.01 : -0.01
-      root.sink.audio.volume = Math.max(0, Math.min(1, root.sink.audio.volume + delta))
+      Quickshell.execDetached(["brightnessctl", "set", wheel.angleDelta.y > 0 ? "1%+" : "1%-"])
     }
+  }
+
+  Process {
+    id: brightnessControl
   }
 
   Process {
